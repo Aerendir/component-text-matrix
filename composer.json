@@ -1,0 +1,30 @@
+{
+    "name": "serendipity_hq/php_text_matrix",
+    "description": "A PHP library to render an array representing a matrix as a plain text table.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
+    "homepage": "https://github.com/Aerendir/PHPTextMatrix",
+    "authors": [
+        {
+            "name": "Adamo Aerendir Crespi",
+            "email": "hello@aerendir.me"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+        "symfony/options-resolver": "*"
+    },
+    "require-dev": {
+        "codeclimate/php-test-reporter": "dev-master",
+        "friendsofphp/php-cs-fixer": "*",
+        "phpunit/phpunit": "*",
+        "symfony/var-dumper": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SerendipityHQ\\Component\\PHPTextMatrix\\": "src",
+            "SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\": "tests"
+        }
+    }
+}
