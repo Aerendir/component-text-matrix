@@ -56,7 +56,7 @@ $data = [
     ],
     [
         'quantity' => '1 month',
-        'description' => 'Basecamp 3:      Basecamp For Us' . PHP_EOL . 'From Sep 26 2016 to Oct 26 2016.',
+        'description' => 'TrustBack.Me:       Base plan' . PHP_EOL . 'From Sep 26 2016 to Oct 26 2016.',
         'price' => '$29.00'
     ],
     [
@@ -69,19 +69,22 @@ $data = [
 // The array containing the data
 $options = [
     'has_header' => true,
-    'cells_padding' => [0, 1],
-    'sep_head_v' => '',
-    'sep_head_x' => '-',
+    'cells_padding' => [0, 3],
+    'sep_head_v' => ' ',
+    'sep_head_x' => ' ',
     'sep_head_h' => '-',
-    'sep_v' => '',
-    'sep_x' => '',
-    'sep_h' => '',
+    'sep_v' => ' ',
+    'sep_x' => ' ',
+    'sep_h' => ' ',
     'show_head_top_sep' => false,
     'columns' => [
         'description' => [
             'max_width' => 40,
             // Equal to CSS word-break: break-all
             'cut' => true
+        ],
+        'price' => [
+            'align' => 'right'
         ]
     ]
 ];

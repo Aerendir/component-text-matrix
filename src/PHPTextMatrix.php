@@ -326,11 +326,11 @@ class PHPTextMatrix
                 // Use it
                 $lineContent = $cellContent[$lineNumber];
 
-            $rightSpaces = 0;
+            $alignSpaces = 0;
 
             // Count characters and draw spaces if needed
             if (iconv_strlen($lineContent) < $this->columnsWidths[$columnName]) {
-                $rightSpaces = $this->columnsWidths[$columnName] - iconv_strlen($lineContent);
+                $alignSpaces = $this->columnsWidths[$columnName] - iconv_strlen($lineContent);
             }
 
             // Draw the line
@@ -338,13 +338,31 @@ class PHPTextMatrix
                 // Vertical Separator
                 .= $this->options[$sepPrefix . 'v']
                 // + left padding
-                . $this->drawSpaces($this->options['cells_padding'][3])
-                // + content
-                . trim($lineContent)
-                // + right spaces
-                . $this->drawSpaces($rightSpaces)
-                // + right padding
-                . $this->drawSpaces($this->options['cells_padding'][1]);
+                . $this->drawSpaces($this->options['cells_padding'][3]);
+
+            if (false === isset($this->options['columns'][$columnName]['align']))
+                $this->options['columns'][$columnName]['align'] = $this->options['default_cell_align'];
+
+            switch ($this->options['columns'][$columnName]['align']) {
+                case 'left':
+                    $line .=
+                        // + content
+                        trim($lineContent)
+                        // + right spaces
+                        . $this->drawSpaces($alignSpaces);
+                    break;
+
+                case 'right':
+                    $line .=
+                        // + right spaces
+                        $this->drawSpaces($alignSpaces)
+                        // + content
+                        . trim($lineContent);
+                    break;
+            }
+
+            // + right padding
+            $line .= $this->drawSpaces($this->options['cells_padding'][1]);
         }
 
         return $line . $this->options[$sepPrefix . 'v'] . PHP_EOL;
@@ -418,7 +436,9 @@ class PHPTextMatrix
             'sep_x' => '+',
             'has_header' => false,
             // Determines if the top divider of the header has to be shown or not
-            'show_head_top_sep' => true
+            'show_head_top_sep' => true,
+            // Determine if the content has to be aligned on the left or on the right
+            'default_cell_align' => 'left'
             ])
             // This options can be passed or not
                 ->setDefined('cells_padding')
@@ -443,7 +463,7 @@ class PHPTextMatrix
         $this->options = $resolver->resolve($options);
 
         $this->options['cells_padding'] = $this->resolveCellsPaddings();
-        $this->options['columns']       = $this->resolveColumnsWidths();
+        $this->options['columns']       = $this->resolveColumnsOptions();
     }
 
     /**
@@ -517,7 +537,7 @@ class PHPTextMatrix
     /**
      * @return array
      */
-    private function resolveColumnsWidths()
+    private function resolveColumnsOptions()
     {
         $return = [];
         // Sub- resovler for columns
@@ -525,9 +545,11 @@ class PHPTextMatrix
             $resolver = new OptionsResolver();
             $resolver->setDefined('max_width');
             $resolver->setDefault('cut', false);
+            $resolver->setDefault('align', 'left');
 
             $resolver->setAllowedTypes('max_width', 'integer');
             $resolver->setAllowedValues('cut', [true, false]);
+            $resolver->setAllowedValues('align', ['left', 'right']);
 
             foreach ($this->options['columns'] as $columnName => $columnOptions) {
                 $resolved = $resolver->resolve($columnOptions);

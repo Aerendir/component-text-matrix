@@ -1,3 +1,11 @@
+## 0.5.0
+*(2016-09-26)*
+
+#### Features
+* Support text align setting for each single column.
+
+---
+
 ## 0.4.0
 *(2016-09-26)*
 
