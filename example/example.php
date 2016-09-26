@@ -24,7 +24,7 @@ $data = [
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
 
 echo '<pre>';
-echo $table->render();
+//echo $table->render();
 echo '</pre>';
 
 // The array containing the data
@@ -40,6 +40,36 @@ $options = [
         ]
     ],
     'cells_padding' => 5
+];
+
+$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+
+echo '<pre>';
+//echo $table->render($options);
+echo '</pre>';
+
+$data = [
+    [
+        'quantity' => '1 month',
+        'description' => 'Basecamp 3:      Basecamp For Us' . PHP_EOL . 'From Sep 26 2016 to Oct 26 2016.',
+        'price' => '$29.00'
+    ],
+    [
+        'quantity' => '',
+        'description' => 'Credit applied',
+        'price' => '-$29.00'
+    ]
+];
+
+// The array containing the data
+$options = [
+    'columns' => [
+        'description' => [
+            'max_width' => 40,
+            // Equal to CSS word-break: break-all
+            'cut' => true
+        ]
+    ]
 ];
 
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);

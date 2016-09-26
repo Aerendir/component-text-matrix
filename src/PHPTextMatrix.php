@@ -208,7 +208,7 @@ class PHPTextMatrix
      */
     private function reduceSpaces($cellContent)
     {
-        return preg_replace('/\s+/', ' ', $cellContent);
+        return preg_replace('/\x20+/', ' ', $cellContent);
     }
 
     /**
