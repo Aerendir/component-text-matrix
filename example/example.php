@@ -50,6 +50,11 @@ echo '</pre>';
 
 $data = [
     [
+        'quantity' => 'Quantity',
+        'description' => 'Description',
+        'price' => 'Price'
+    ],
+    [
         'quantity' => '1 month',
         'description' => 'Basecamp 3:      Basecamp For Us' . PHP_EOL . 'From Sep 26 2016 to Oct 26 2016.',
         'price' => '$29.00'
@@ -63,6 +68,15 @@ $data = [
 
 // The array containing the data
 $options = [
+    'has_header' => true,
+    'cells_padding' => [0, 1],
+    'sep_head_v' => '',
+    'sep_head_x' => '-',
+    'sep_head_h' => '-',
+    'sep_v' => '',
+    'sep_x' => '',
+    'sep_h' => '',
+    'show_head_top_sep' => false,
     'columns' => [
         'description' => [
             'max_width' => 40,

@@ -27,6 +27,9 @@ class PHPTextMatrix
     /** @var  array $data The data to render in the table */
     private $data;
 
+    /** @var array $header Contains the names of the columns. Those are the keys of the columns. */
+    private $header = [];
+
     /** @var array $errors Contains the errors found by the validate() method */
     private $errors;
 
@@ -87,11 +90,16 @@ class PHPTextMatrix
         // Now we can calculate the total length of the table
         $this->calculateWidthOfTable();
 
-        $table = $this->drawDivider();
+        $table = $this->options['has_header'] ? $this->drawHeaderDivider() : $this->drawDivider();
+
+        // If the top divider of the header hasn't to be shown...
+        if ($this->options['has_header'] && false === $this->options['show_head_top_sep'])
+            // ... Remove it
+            $table = '';
 
         foreach ($this->data as $rowPosition => $rowContent) {
             $table .= $this->drawRow($rowPosition, $rowContent);
-            $table .= $this->drawDivider();
+            $table .= $this->options['has_header'] && 0 === $rowPosition ? $this->drawHeaderDivider() : $this->drawDivider();
         }
 
         $this->table = $table;
@@ -222,6 +230,7 @@ class PHPTextMatrix
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content ...
             foreach ($rowContent as $columnName => $cellContent) {
+
                 // If we don't already know the height of this row...
                 if (false === isset($this->rowsHeights[$rowPosition]))
                     // ... we save the current calculated height
@@ -273,31 +282,40 @@ class PHPTextMatrix
     }
 
     /**
+     * @return string
+     */
+    private function drawHeaderDivider()
+    {
+        return $this->drawDivider('sep_head_');
+    }
+
+    /**
      * Draws the horizontal divider.
+     *
+     * @param string $prefix
      *
      * @return string
      */
-    private function drawDivider()
+    private function drawDivider($prefix = 'sep_')
     {
         $divider = '';
         foreach ($this->columnsWidths as $width) {
             // Column width position for the xSep + left and rigth padding
             $times = $width + $this->options['cells_padding'][1] + $this->options['cells_padding'][3];
-            $divider .= $this->options['sep_x'] . $this->repeatChar($this->options['sep_h'], $times);
+            $divider .= $this->options[$prefix . 'x'] . $this->repeatChar($this->options[$prefix . 'h'], $times);
         }
 
-        //$divider .= $this->xSep . $this->repeatChar($this->hSep, $this->tableWidth - 2) . $this->xSep . PHP_EOL;
-
-        return $divider . $this->options['sep_x'] . PHP_EOL;
+        return $divider . $this->options[$prefix . 'x'] . PHP_EOL;
     }
 
     /**
      * @param integer $lineNumber
      * @param array  $rowContent
+     * @param string $sepPrefix
      *
      * @return string
      */
-    private function drawLine($lineNumber, $rowContent)
+    private function drawLine($lineNumber, $rowContent, $sepPrefix = 'sep_')
     {
         $line = '';
         foreach ($rowContent as $columnName => $cellContent) {
@@ -318,7 +336,7 @@ class PHPTextMatrix
             // Draw the line
             $line
                 // Vertical Separator
-                .= $this->options['sep_v']
+                .= $this->options[$sepPrefix . 'v']
                 // + left padding
                 . $this->drawSpaces($this->options['cells_padding'][3])
                 // + content
@@ -329,7 +347,7 @@ class PHPTextMatrix
                 . $this->drawSpaces($this->options['cells_padding'][1]);
         }
 
-        return $line . $this->options['sep_v'] . PHP_EOL;
+        return $line . $this->options[$sepPrefix . 'v'] . PHP_EOL;
     }
 
     /**
@@ -342,7 +360,8 @@ class PHPTextMatrix
     {
         $row = '';
         for ($lineNumber = 0; $lineNumber < $this->rowsHeights[$rowPosition]; $lineNumber++) {
-            $row .= $this->drawLine($lineNumber, $rowContent);
+            $sepPrefix = $this->options['has_header'] && 0 === $rowPosition ? 'sep_head_' : 'sep_';
+            $row .= $this->drawLine($lineNumber, $rowContent, $sepPrefix);
         }
 
         // Cell content + the last vertical separator
@@ -385,12 +404,21 @@ class PHPTextMatrix
     {
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
+            // The horizontal header separator
+            'sep_head_h' => '=',
+            // The vertical header separator
+            'sep_head_v' => '#',
+            // The cross header separator
+            'sep_head_x' => '#',
             // The horizontal separator
             'sep_h' => '-',
             // The vertical separator
             'sep_v' => '|',
             // The cross separator
-            'sep_x' => '+'
+            'sep_x' => '+',
+            'has_header' => false,
+            // Determines if the top divider of the header has to be shown or not
+            'show_head_top_sep' => true
             ])
             // This options can be passed or not
                 ->setDefined('cells_padding')
@@ -475,7 +503,7 @@ class PHPTextMatrix
                 break;
 
             case 4:
-                // Set the same padding for all directions
+                // Set specific paddings for each direction
                 $return = [$padding[0], $padding[1], $padding[2], $padding[3]];
                 break;
 
