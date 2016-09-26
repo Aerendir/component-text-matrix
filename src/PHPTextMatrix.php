@@ -31,19 +31,25 @@ class PHPTextMatrix
     private $errors;
 
     /**
-     * @var array $columnsWidths For each column, contains the length of the longest cell.
-     *                           The longest content found in the column is the width of the column itself.
+     * @var array $columnsWidths For each column, contains the length of the longest line in each splitted cell.
+     *                           The longest line found in the column is the width of the column itself.
      */
     private $columnsWidths = [];
+
+    /**
+     * @var array $rowsHeights For each row, contains the height of the highest cell
+     *                         The highest cell found in the row is the height of the row itself.
+     */
+    private $rowsHeights = [];
 
     /** @var  array $options The options to render the table */
     private $options;
 
-    /** @var  int $tableWidth The total width of the table */
-    private $tableWidth;
-
     /** @var  string $table The rendered table in the plain text format */
     private $table;
+
+    /** @var  int $tableWidth The total width of the table */
+    private $tableWidth;
 
     /**
      * @param array $data
@@ -68,23 +74,31 @@ class PHPTextMatrix
         if (false === $this->validate())
             return false;
 
+        // Splits the content of the cells to fit into the defined line length
+        $this->splitCellsContent();
+
         /*
-         * The first thing to do is to calculate the width of each column.
-         * The width is equal to the longest value found in the column.
+         * Calculate the height of each row and the width of each column.
+         * The height is equal to highest cell content found in the row.
+         * The width is equal to the longest line found in the content of each cell of the column.
          */
-        $this->calculateWidthOfColumns();
+        $this->calculateSizes();
 
         // Now we can calculate the total length of the table
         $this->calculateWidthOfTable();
 
         $table = $this->drawDivider();
 
-        foreach ($this->data as $rowPosition => $row) {
-            $table .= $this->drawRow($row);
+        foreach ($this->data as $rowPosition => $rowContent) {
+            $table .= $this->drawRow($rowPosition, $rowContent);
             $table .= $this->drawDivider();
         }
 
         $this->table = $table;
+
+        // Reset options
+        $this->options = [];
+
         return $this->table;
     }
 
@@ -144,32 +158,86 @@ class PHPTextMatrix
     }
 
     /**
+     * Splits the content of each cell into multiple lines according to the set max column width.
+     */
+    private function splitCellsContent()
+    {
+        // For each row...
+        foreach ($this->data as $rowPosition => $rowContent) {
+            // ... cycle each column to get its content
+            foreach ($rowContent as $columnName => $cellContent) {
+                // If we don't have a max widt set for the column...
+                if (false === isset($this->options['columns'][$columnName]['max_width'])) {
+                    // ... simply wrap the content in an array and continue
+                    $this->data[$rowPosition][$columnName] = [$cellContent];
+                    continue;
+                }
+
+                // ... We have a max_width set: split the column
+                $length = $this->options['columns'][$columnName]['max_width'];
+                $cellContent = $this->reduceSpaces($cellContent);
+                $cut = $this->options['columns'][$columnName]['cut'];
+
+                $wrapped = wordwrap($cellContent, $length, PHP_EOL, $cut);
+
+                $this->data[$rowPosition][$columnName] = explode(PHP_EOL, $wrapped);
+            }
+        }
+    }
+
+    /**
+     * @see http://stackoverflow.com/a/2326133/1399706
+     *
+     * @param string $cellContent
+     *
+     * @return string mixed
+     */
+    private function reduceSpaces($cellContent)
+    {
+        return preg_replace('/\s+/', ' ', $cellContent);
+    }
+
+    /**
      * Calculates the width of each column of the table.
      *
      * This method is used only for plain text tables.
      */
-    private function calculateWidthOfColumns()
+    private function calculateSizes()
     {
         // For each row...
         foreach ($this->data as $rowPosition => $rowContent) {
-            // ... cycle each column to calculate the length of its cell
+            // ... cycle each column to get its content ...
             foreach ($rowContent as $columnName => $cellContent) {
+                // If we don't already know the height of this row...
+                if (false === isset($this->rowsHeights[$rowPosition]))
+                    // ... we save the current calculated height
+                    $this->rowsHeights[$rowPosition] = count($cellContent);
 
-                // Get the length of the cell
-                $contentLength = iconv_strlen($cellContent);
-
-                // If we don't already have a length for this column...
-                if (false === isset($this->columnsWidths[$columnName]))
-                    // ... we save the current calculated length
-                    $this->columnsWidths[$columnName] = $contentLength;
-
-                // At this point we have a length for sure: on each cycle we need the longest length
-                if ($contentLength > $this->columnsWidths[$columnName])
+                // At this point we have the heigth for sure: on each cycle, we need the highest height
+                if (count($cellContent) > $this->rowsHeights[$rowPosition])
                     /*
-                     * The length of the content of this cell is longer than the value we already have.
-                     * So we need to use this new value as length for the current column.
+                     * The height of this row is the highest found: use this to set the height of the entire row.
                      */
-                    $this->columnsWidths[$columnName] = $contentLength;
+                    $this->rowsHeights[$rowPosition] = count($cellContent);
+
+                // ... and calculate the length of each line to get the max length of the column
+                foreach ($cellContent as $lineNumber => $lineContent) {
+                    // Get the length of the cell
+                    $contentLength = iconv_strlen($lineContent);
+
+                    // If we don't already have a length for this column...
+                    if (false === isset($this->columnsWidths[$columnName]))
+                        // ... we save the current calculated length
+                        $this->columnsWidths[$columnName] = $contentLength;
+
+                    // At this point we have a length for sure: on each cycle we need the longest length
+                    if ($contentLength > $this->columnsWidths[$columnName])
+                        /*
+                         * The length of the content of this cell is longer than the value we already have.
+                         * So we need to use this new value as length for the current column.
+                         */
+                        $this->columnsWidths[$columnName] = $contentLength;
+                }
             }
         }
     }
@@ -210,34 +278,61 @@ class PHPTextMatrix
     }
 
     /**
-     * @param array $row
+     * @param integer $lineNumber
+     * @param array  $rowContent
      *
      * @return string
      */
-    private function drawRow(array $row)
+    private function drawLine($lineNumber, $rowContent)
     {
-        $rowContent = '';
-        foreach ($row as $columnName => $cellContent) {
+        $line = '';
+        foreach ($rowContent as $columnName => $cellContent) {
+            $lineContent = '';
+
+            // If the line contains some text...
+            if (isset($cellContent[$lineNumber]))
+                // Use it
+                $lineContent = $cellContent[$lineNumber];
+
             $rightSpaces = 0;
 
-            if (iconv_strlen($cellContent) < $this->columnsWidths[$columnName]) {
-                $rightSpaces = $this->columnsWidths[$columnName] - iconv_strlen($cellContent);
+            // Count characters and draw spaces if needed
+            if (iconv_strlen($lineContent) < $this->columnsWidths[$columnName]) {
+                $rightSpaces = $this->columnsWidths[$columnName] - iconv_strlen($lineContent);
             }
 
-            // Vertical Separator
-            $rowContent .= $this->options['sep_v']
+            // Draw the line
+            $line
+                // Vertical Separator
+                .= $this->options['sep_v']
                 // + left padding
                 . $this->drawSpaces($this->options['cells_padding'][3])
                 // + content
-                . trim($cellContent)
+                . trim($lineContent)
                 // + right spaces
                 . $this->drawSpaces($rightSpaces)
                 // + right padding
                 . $this->drawSpaces($this->options['cells_padding'][1]);
         }
 
+        return $line . $this->options['sep_v'] . PHP_EOL;
+    }
+
+    /**
+     * @param int   $rowPosition
+     * @param array $rowContent
+     *
+     * @return string
+     */
+    private function drawRow($rowPosition, array $rowContent)
+    {
+        $row = '';
+        for ($lineNumber = 0; $lineNumber < $this->rowsHeights[$rowPosition]; $lineNumber++) {
+            $row .= $this->drawLine($lineNumber, $rowContent);
+        }
+
         // Cell content + the last vertical separator
-        return $rowContent . $this->options['sep_v'] . PHP_EOL;
+        return $row;
     }
 
     /**
@@ -383,15 +478,14 @@ class PHPTextMatrix
     private function resolveColumnsWidths()
     {
         $return = [];
-
         // Sub- resovler for columns
         if (isset($this->options['columns'])) {
             $resolver = new OptionsResolver();
             $resolver->setDefined('max_width');
-            $resolver->setDefault('word_break', 'break_all');
+            $resolver->setDefault('cut', false);
 
             $resolver->setAllowedTypes('max_width', 'integer');
-            $resolver->setAllowedValues('word_break', ['break_all', 'keep_all']);
+            $resolver->setAllowedValues('cut', [true, false]);
 
             foreach ($this->options['columns'] as $columnName => $columnOptions) {
                 $resolved = $resolver->resolve($columnOptions);
