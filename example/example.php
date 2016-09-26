@@ -24,7 +24,7 @@ $data = [
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
 
 echo '<pre>';
-//echo $table->render();
+echo $table->render();
 echo '</pre>';
 
 // The array containing the data
@@ -38,7 +38,8 @@ $options = [
             // Equal to CSS word-break: break-all
             'cut' => true
         ]
-    ]
+    ],
+    'cells_padding' => 5
 ];
 
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);

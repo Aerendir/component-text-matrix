@@ -166,11 +166,11 @@ class PHPTextMatrix
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content
             foreach ($rowContent as $columnName => $cellContent) {
-                // If we don't have a max widt set for the column...
+                // If we don't have a max width set for the column...
                 if (false === isset($this->options['columns'][$columnName]['max_width'])) {
                     // ... simply wrap the content in an array and continue
                     $this->data[$rowPosition][$columnName] = [$cellContent];
-                    continue;
+                    goto addVerticalPadding;
                 }
 
                 // ... We have a max_width set: split the column
@@ -181,6 +181,20 @@ class PHPTextMatrix
                 $wrapped = wordwrap($cellContent, $length, PHP_EOL, $cut);
 
                 $this->data[$rowPosition][$columnName] = explode(PHP_EOL, $wrapped);
+
+                // At the end, add the vertical padding to the cell's content
+                addVerticalPadding:
+                if (0 < $this->options['cells_padding'][0]) {
+                    // Now add the top padding
+                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; $paddingLine++)
+                        array_unshift($this->data[$rowPosition][$columnName], '');
+                }
+
+                if (0 < $this->options['cells_padding'][2]) {
+                    // And the bottom padding
+                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; $paddingLine++)
+                        array_push($this->data[$rowPosition][$columnName], '');
+                }
             }
         }
     }
@@ -418,7 +432,7 @@ class PHPTextMatrix
      */
     private function resolveCellsPaddings()
     {
-        $return = [1, 1, 1, 1];
+        $return = [0, 0, 0, 0];
 
         // If padding is not set, return default values
         if (false === isset($this->options['cells_padding']))
