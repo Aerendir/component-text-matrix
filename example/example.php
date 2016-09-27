@@ -27,7 +27,7 @@ echo '<pre>';
 echo $table->render();
 echo '</pre>';
 
-// The array containing the data
+
 $options = [
     'columns' => [
         'review' => [
