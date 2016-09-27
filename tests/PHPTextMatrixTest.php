@@ -10,6 +10,7 @@
  */
 
 namespace SerendipityHQ\Component\PHPTextMatrixTest;
+
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
@@ -18,7 +19,7 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
  */
 class PHPTextMatrixTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  array */
+    /** @var array */
     private $data;
 
     /**
@@ -47,7 +48,7 @@ class PHPTextMatrixTest extends \PHPUnit_Framework_TestCase
 
     public function testTextMatrix()
     {
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--+--+--+
 |a1|b1|c1|
 +--+--+--+
@@ -110,7 +111,7 @@ EOF;
 
         array_unshift($this->data, $header);
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 #========#========#========#
 #Column A#Column B#Column C#
 #========#========#========#
@@ -144,7 +145,7 @@ EOF;
             'show_head_top_sep' => false,
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 #Column A#Column B#Column C#
 #========#========#========#
 |a1      |b1      |c1      |
@@ -168,7 +169,7 @@ EOF;
             'cells_padding' => 1
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +----+----+----+
 |    |    |    |
 | a1 | b1 | c1 |
@@ -197,7 +198,7 @@ EOF;
             'cells_padding' => [1]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +----+----+----+
 |    |    |    |
 | a1 | b1 | c1 |
@@ -226,7 +227,7 @@ EOF;
             'cells_padding' => [1, 2]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +------+------+------+
 |      |      |      |
 |  a1  |  b1  |  c1  |
@@ -255,7 +256,7 @@ EOF;
             'cells_padding' => [1, 2, 3]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +------+------+------+
 |      |      |      |
 |  a1  |  b1  |  c1  |
@@ -290,7 +291,7 @@ EOF;
             'cells_padding' => [1, 2, 3, 4]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--------+--------+--------+
 |        |        |        |
 |    a1  |    b1  |    c1  |
@@ -359,7 +360,7 @@ EOF;
             ]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--+-----------+--+
 |a1|longer than|c1|
 |  |11         |  |
@@ -408,7 +409,7 @@ EOF;
             ]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--+------+--+
 |a1|longer|c1|
 |  |than  |  |
@@ -461,7 +462,7 @@ EOF;
             ]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--+-----+--+
 |a1|longe|c1|
 |  |r    |  |
@@ -516,7 +517,7 @@ EOF;
             ]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
 +--+------+--+
 |a1|longer|c1|
 |  |  than|  |
@@ -581,7 +582,7 @@ EOF;
             ]
         ];
 
-        $expected = <<<EOF
+        $expected = <<<'EOF'
     Quantity       Description                              Price    
  -------------- -------------------------------------- ------------- 
     1 month        TrustBack.Me: Base plan                 $29.00    
