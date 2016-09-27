@@ -10,6 +10,7 @@
  */
 
 namespace SerendipityHQ\Component\PHPTextMatrix;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -24,31 +25,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PHPTextMatrix
 {
-    /** @var  array $data The data to render in the table */
+    /** @var array $data The data to render in the table */
     private $data;
 
     /** @var array $errors Contains the errors found by the validate() method */
     private $errors;
 
     /**
-     * @var array $columnsWidths For each column, contains the length of the longest line in each splitted cell.
-     *                           The longest line found in the column is the width of the column itself.
+     * @var array For each column, contains the length of the longest line in each splitted cell.
+     *            The longest line found in the column is the width of the column itself
      */
     private $columnsWidths = [];
 
     /**
-     * @var array $rowsHeights For each row, contains the height of the highest cell
-     *                         The highest cell found in the row is the height of the row itself.
+     * @var array For each row, contains the height of the highest cell
+     *            The highest cell found in the row is the height of the row itself
      */
     private $rowsHeights = [];
 
-    /** @var  array $options The options to render the table */
+    /** @var array $options The options to render the table */
     private $options;
 
-    /** @var  string $table The rendered table in the plain text format */
+    /** @var string $table The rendered table in the plain text format */
     private $table;
 
-    /** @var  int $tableWidth The total width of the table */
+    /** @var int $tableWidth The total width of the table */
     private $tableWidth;
 
     /**
@@ -71,8 +72,9 @@ class PHPTextMatrix
         // Set the options to use
         $this->resolveOptions($options);
 
-        if (false === $this->validate())
+        if (false === $this->validate()) {
             return false;
+        }
 
         // Splits the content of the cells to fit into the defined line length
         $this->splitCellsContent();
@@ -90,9 +92,10 @@ class PHPTextMatrix
         $table = $this->options['has_header'] ? $this->drawHeaderDivider() : $this->drawDivider();
 
         // If the top divider of the header hasn't to be shown...
-        if ($this->options['has_header'] && false === $this->options['show_head_top_sep'])
+        if ($this->options['has_header'] && false === $this->options['show_head_top_sep']) {
             // ... Remove it
             $table = '';
+        }
 
         foreach ($this->data as $rowPosition => $rowContent) {
             $table .= $this->drawRow($rowPosition, $rowContent);
@@ -135,8 +138,9 @@ class PHPTextMatrix
         foreach ($this->data as $row) {
             $found = count($row);
 
-            if (null === $numberOfColumns)
+            if (null === $numberOfColumns) {
                 $numberOfColumns = $found;
+            }
 
             if ($numberOfColumns !== $found) {
                 $message = sprintf(
@@ -191,14 +195,16 @@ class PHPTextMatrix
                 addVerticalPadding:
                 if (0 < $this->options['cells_padding'][0]) {
                     // Now add the top padding
-                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; $paddingLine++)
+                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; ++$paddingLine) {
                         array_unshift($this->data[$rowPosition][$columnName], '');
+                    }
                 }
 
                 if (0 < $this->options['cells_padding'][2]) {
                     // And the bottom padding
-                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; $paddingLine++)
+                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; ++$paddingLine) {
                         array_push($this->data[$rowPosition][$columnName], '');
+                    }
                 }
             }
         }
@@ -229,16 +235,18 @@ class PHPTextMatrix
             foreach ($rowContent as $columnName => $cellContent) {
 
                 // If we don't already know the height of this row...
-                if (false === isset($this->rowsHeights[$rowPosition]))
+                if (false === isset($this->rowsHeights[$rowPosition])) {
                     // ... we save the current calculated height
                     $this->rowsHeights[$rowPosition] = count($cellContent);
+                }
 
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
-                if (count($cellContent) > $this->rowsHeights[$rowPosition])
+                if (count($cellContent) > $this->rowsHeights[$rowPosition]) {
                     /*
                      * The height of this row is the highest found: use this to set the height of the entire row.
                      */
                     $this->rowsHeights[$rowPosition] = count($cellContent);
+                }
 
                 // ... and calculate the length of each line to get the max length of the column
                 foreach ($cellContent as $lineNumber => $lineContent) {
@@ -246,17 +254,19 @@ class PHPTextMatrix
                     $contentLength = iconv_strlen($lineContent);
 
                     // If we don't already have a length for this column...
-                    if (false === isset($this->columnsWidths[$columnName]))
+                    if (false === isset($this->columnsWidths[$columnName])) {
                         // ... we save the current calculated length
                         $this->columnsWidths[$columnName] = $contentLength;
+                    }
 
                     // At this point we have a length for sure: on each cycle we need the longest length
-                    if ($contentLength > $this->columnsWidths[$columnName])
+                    if ($contentLength > $this->columnsWidths[$columnName]) {
                         /*
                          * The length of the content of this cell is longer than the value we already have.
                          * So we need to use this new value as length for the current column.
                          */
                         $this->columnsWidths[$columnName] = $contentLength;
+                    }
                 }
             }
         }
@@ -306,7 +316,7 @@ class PHPTextMatrix
     }
 
     /**
-     * @param integer $lineNumber
+     * @param int    $lineNumber
      * @param array  $rowContent
      * @param string $sepPrefix
      *
@@ -319,9 +329,10 @@ class PHPTextMatrix
             $lineContent = '';
 
             // If the line contains some text...
-            if (isset($cellContent[$lineNumber]))
+            if (isset($cellContent[$lineNumber])) {
                 // Use it
                 $lineContent = $cellContent[$lineNumber];
+            }
 
             $alignSpaces = 0;
 
@@ -337,8 +348,9 @@ class PHPTextMatrix
                 // + left padding
                 . $this->drawSpaces($this->options['cells_padding'][3]);
 
-            if (false === isset($this->options['columns'][$columnName]['align']))
+            if (false === isset($this->options['columns'][$columnName]['align'])) {
                 $this->options['columns'][$columnName]['align'] = $this->options['default_cell_align'];
+            }
 
             switch ($this->options['columns'][$columnName]['align']) {
                 case 'left':
@@ -374,7 +386,7 @@ class PHPTextMatrix
     private function drawRow($rowPosition, array $rowContent)
     {
         $row = '';
-        for ($lineNumber = 0; $lineNumber < $this->rowsHeights[$rowPosition]; $lineNumber++) {
+        for ($lineNumber = 0; $lineNumber < $this->rowsHeights[$rowPosition]; ++$lineNumber) {
             $sepPrefix = $this->options['has_header'] && 0 === $rowPosition ? 'sep_head_' : 'sep_';
             $row .= $this->drawLine($lineNumber, $rowContent, $sepPrefix);
         }
@@ -387,6 +399,7 @@ class PHPTextMatrix
      * Draws a string of empty spaces.
      *
      * @param int $amount
+     *
      * @return string
      */
     private function drawSpaces($amount)
@@ -395,19 +408,21 @@ class PHPTextMatrix
     }
 
     /**
-     * @param string $char The character to repeat
-     * @param int $times The number of times the char has to be repeated
+     * @param string $char  The character to repeat
+     * @param int    $times The number of times the char has to be repeated
      *
      * @return string
      */
     private function repeatChar($char, $times)
     {
-        if (0 === $times)
+        if (0 === $times) {
             return '';
+        }
 
         $string = '';
-        for ($i = 1; $i <= $times; $i++)
+        for ($i = 1; $i <= $times; ++$i) {
             $string .= $char;
+        }
 
         return $string;
     }
@@ -460,7 +475,7 @@ class PHPTextMatrix
         $this->options = $resolver->resolve($options);
 
         $this->options['cells_padding'] = $this->resolveCellsPaddings();
-        $this->options['columns']       = $this->resolveColumnsOptions();
+        $this->options['columns'] = $this->resolveColumnsOptions();
     }
 
     /**
@@ -469,6 +484,7 @@ class PHPTextMatrix
      * This is the number of spaces to put on the left and on the right and on top and bottom of the content in each cell.
      *
      * This method follows the rules of the padding CSS rule.
+     *
      * @see http://www.w3schools.com/css/css_padding.asp
      *
      * @return array
@@ -480,8 +496,9 @@ class PHPTextMatrix
         $return = [0, 0, 0, 0];
 
         // If padding is not set, return default values
-        if (false === isset($this->options['cells_padding']))
+        if (false === isset($this->options['cells_padding'])) {
             return $return;
+        }
 
         // Create a resolver to validate passed values
         $resolver = new OptionsResolver();
@@ -498,8 +515,9 @@ class PHPTextMatrix
         $padding = $this->options['cells_padding'];
 
         // If is only an integer, make it an array with only one set value
-        if (is_int($padding))
+        if (is_int($padding)) {
             $padding = [$padding];
+        }
 
         $count = count($padding);
 
