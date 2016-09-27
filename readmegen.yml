@@ -16,3 +16,4 @@ message_groups:
     - refactoring
   Tests:
     - test
+    - tests

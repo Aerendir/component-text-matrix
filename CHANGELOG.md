@@ -1,3 +1,22 @@
+## 0.6.0
+*(2016-09-27)*
+
+#### Features
+* Support text align setting for each single column.
+
+#### Bugfixes
+* Apply `reduceSpaces` to all cells' contents.
+* Apply the bottom padding in the right way.
+* Remove unused property `header`.
+
+#### Documentation
+* Better comment the setting of padding on variable number of options.
+
+### Tests
+* Fully test the class.
+
+---
+
 ## 0.5.0
 *(2016-09-26)*
 

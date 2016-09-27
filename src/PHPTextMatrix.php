@@ -175,6 +175,9 @@ class PHPTextMatrix
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content
             foreach ($rowContent as $columnName => $cellContent) {
+                // Remove extra spaces from the string
+                $cellContent = $this->reduceSpaces($cellContent);
+
                 // If we don't have a max width set for the column...
                 if (false === isset($this->options['columns'][$columnName]['max_width'])) {
                     // ... simply wrap the content in an array and continue
@@ -184,7 +187,6 @@ class PHPTextMatrix
 
                 // ... We have a max_width set: split the column
                 $length = $this->options['columns'][$columnName]['max_width'];
-                $cellContent = $this->reduceSpaces($cellContent);
                 $cut = $this->options['columns'][$columnName]['cut'];
 
                 $wrapped = wordwrap($cellContent, $length, PHP_EOL, $cut);
@@ -202,7 +204,7 @@ class PHPTextMatrix
 
                 if (0 < $this->options['cells_padding'][2]) {
                     // And the bottom padding
-                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][0]; ++$paddingLine) {
+                    for ($paddingLine = 0; $paddingLine < $this->options['cells_padding'][2]; ++$paddingLine) {
                         array_push($this->data[$rowPosition][$columnName], '');
                     }
                 }
@@ -224,8 +226,6 @@ class PHPTextMatrix
 
     /**
      * Calculates the width of each column of the table.
-     *
-     * This method is used only for plain text tables.
      */
     private function calculateSizes()
     {
@@ -528,22 +528,19 @@ class PHPTextMatrix
                 break;
 
             case 2:
-                // Set the same padding for all directions
+                // 0: Top and Bottom; 1: Left and Right
                 $return = [$padding[0], $padding[1], $padding[0], $padding[1]];
                 break;
 
             case 3:
-                // Set the same padding for all directions
+                // 0: Top; 1: Left and Right; 2: Bottom
                 $return = [$padding[0], $padding[1], $padding[2], $padding[1]];
                 break;
 
             case 4:
-                // Set specific paddings for each direction
+                // 0: Top; 1: Right; 2: Bottom; 3: Left
                 $return = [$padding[0], $padding[1], $padding[2], $padding[3]];
                 break;
-
-            default:
-
         }
 
         return $return;
