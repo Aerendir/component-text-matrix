@@ -1,3 +1,15 @@
+## 1.0.0
+*(2016-09-27)*
+
+#### Documentation
+* Add the full documentation.
+
+#### Tests
+* Test the customization of separators.
+
+#### Bugfixes
+* Apply `reduceSpaces()` to all cells' contents.
+
 ## 0.6.0
 *(2016-09-27)*
 

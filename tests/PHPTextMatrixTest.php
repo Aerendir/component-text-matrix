@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace SerendipityHQ\Component\PHPArrayToTxtTable;
+namespace SerendipityHQ\Component\PHPTextMatrixTest;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * @author Adamo "Aerendir" Crespi <hello@aerendir.me>
  */
-class PHPArrayToTxtTableTest extends \PHPUnit_Framework_TestCase
+class PHPTextMatrixTest extends \PHPUnit_Framework_TestCase
 {
     /** @var  array */
     private $data;
@@ -530,6 +530,65 @@ EOF;
 |  |  than|  |
 |  |    11|  |
 +--+------+--+
+
+EOF;
+
+        $textMatrix = new PHPTextMatrix($data);
+        $result = $textMatrix->render($options);
+
+        $this::assertSame($expected, $result);
+    }
+
+    public function testCustomSeparators()
+    {
+        $data = [
+            [
+                'quantity' => 'Quantity',
+                'description' => 'Description',
+                'price' => 'Price'
+            ],
+            [
+                'quantity' => '1 month',
+                'description' => 'TrustBack.Me:       Base plan' . PHP_EOL . 'From Sep 26 2016 to Oct 26 2016.',
+                'price' => '$29.00'
+            ],
+            [
+                'quantity' => '',
+                'description' => 'Credit applied',
+                'price' => '-$29.00'
+            ]
+        ];
+
+        $options = [
+            'has_header' => true,
+            'cells_padding' => [0, 3],
+            'sep_head_v' => ' ',
+            'sep_head_x' => ' ',
+            'sep_head_h' => '-',
+            'sep_v' => ' ',
+            'sep_x' => ' ',
+            'sep_h' => ' ',
+            'show_head_top_sep' => false,
+            'columns' => [
+                'description' => [
+                    'max_width' => 40,
+                    // Equal to CSS word-break: break-all
+                    'cut' => true
+                ],
+                'price' => [
+                    'align' => 'right'
+                ]
+            ]
+        ];
+
+        $expected = <<<EOF
+    Quantity       Description                              Price    
+ -------------- -------------------------------------- ------------- 
+    1 month        TrustBack.Me: Base plan                 $29.00    
+                   From Sep 26 2016 to Oct 26 2016.                  
+                                                                     
+                   Credit applied                         -$29.00    
+                                                                     
 
 EOF;
 
