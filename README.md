@@ -37,7 +37,7 @@ This library follows the http://semver.org/ versioning conventions.
 
 ### Requirements
 
-- PHP: >= 5.4
+- PHP: >= 5.6
 
 ## How to use PHPTextMatrix
 
