@@ -24,7 +24,7 @@ $data = [
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
 
 echo '<pre>';
-//echo $table->render();
+echo $table->render();
 echo '</pre>';
 
 // The array containing the data
@@ -45,7 +45,7 @@ $options = [
 $table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
 
 echo '<pre>';
-//echo $table->render($options);
+echo $table->render($options);
 echo '</pre>';
 
 $data = [
