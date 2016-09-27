@@ -27,9 +27,6 @@ class PHPTextMatrix
     /** @var  array $data The data to render in the table */
     private $data;
 
-    /** @var array $header Contains the names of the columns. Those are the keys of the columns. */
-    private $header = [];
-
     /** @var array $errors Contains the errors found by the validate() method */
     private $errors;
 
