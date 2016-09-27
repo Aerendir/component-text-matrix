@@ -328,7 +328,7 @@ EOF;
 
         $textMatrix = new PHPTextMatrix($this->data);
 
-        $this::throwException(InvalidOptionsException::class);
+        $this::expectException(InvalidOptionsException::class);
         $textMatrix->render($options);
     }
 
