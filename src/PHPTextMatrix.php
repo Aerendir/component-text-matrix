@@ -49,6 +49,9 @@ class PHPTextMatrix
     /** @var string $table The rendered table in the plain text format */
     private $table;
 
+    /** @var  int $tableWidth The total width of the table */
+    private $tableWidth;
+
     /**
      * @param array $data
      */
@@ -82,6 +85,8 @@ class PHPTextMatrix
          * The width is equal to the longest line found in the content of each cell of the column.
          */
         $this->calculateSizes();
+
+        $this->tableWidth = $this->calculateTableWidth();
 
         $table = $this->options['has_header'] ? $this->drawHeaderDivider() : $this->drawDivider();
 
@@ -158,6 +163,16 @@ class PHPTextMatrix
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    /**
+     * Returns the total width of the table.
+     *
+     * @return int
+     */
+    public function getTableWidth()
+    {
+        return $this->tableWidth;
     }
 
     /**
@@ -264,6 +279,32 @@ class PHPTextMatrix
                 }
             }
         }
+    }
+
+    /**
+     * Calculates the total width of the table
+     *
+     * @return int
+     */
+    private function calculateTableWidth()
+    {
+        // Now calculate the total width of the table
+        $tableWidth = 0;
+
+        // Add the width of the columns
+        foreach ($this->columnsWidths as $width)
+            $tableWidth += $width;
+
+        // Add 1 for the first separator
+        $tableWidth += 1;
+
+        // Add the left and right padding * number of columns
+        $tableWidth += ($this->options['cells_padding'][1] + $this->options['cells_padding'][3]) * count($this->columnsWidths);
+
+        // Add the left separators
+        $tableWidth += count($this->columnsWidths);
+
+        return $tableWidth;
     }
 
     /**

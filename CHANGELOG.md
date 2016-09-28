@@ -1,3 +1,11 @@
+## 1.1.0
+*(2016-09-28)*
+
+#### Features
+* Make available the total width of the rendered table.
+
+---
+
 ## 1.0.0
 *(2016-09-27)*
 

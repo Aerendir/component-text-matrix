@@ -63,6 +63,7 @@ EOF;
         $result = $textMatrix->render();
 
         $this::assertEquals($expected, $result);
+        $this::assertEquals(10, $textMatrix->getTableWidth());
     }
 
     public function testValidationInterceptsMismatchingColumns()
@@ -128,6 +129,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testHeaderDrawingCanRemoveHeaderTopSeparator()
@@ -161,6 +163,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsInteger()
@@ -190,6 +193,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(16, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithOneSetting()
@@ -219,6 +223,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(16, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithTwoSettings()
@@ -248,6 +253,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(22, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithThreeSettings()
@@ -283,6 +289,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(22, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithFourSettings()
@@ -318,6 +325,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAcceptsMaxFourOptions()
@@ -378,6 +386,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(19, $textMatrix->getTableWidth());
     }
 
     public function testCutDefaultsToFalse()
@@ -430,6 +439,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(14, $textMatrix->getTableWidth());
     }
 
     public function testCutToTrue()
@@ -486,6 +496,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(13, $textMatrix->getTableWidth());
     }
 
     public function testAlignRight()
@@ -538,6 +549,7 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(14, $textMatrix->getTableWidth());
     }
 
     public function testCustomSeparators()
@@ -597,5 +609,6 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
+        $this::assertEquals(69, $textMatrix->getTableWidth());
     }
 }
