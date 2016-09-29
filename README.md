@@ -245,7 +245,8 @@ $options = [
             'cut' => true
         ],
         'price' => [
-            'align' => 'right'
+            'align' => 'right',
+            'min_width' => 15
         ]
     ]
 ];
@@ -260,13 +261,13 @@ echo '</pre>';
 This is the generated table:
 
 ```
-    Quantity       Description                              Price    
- -------------- -------------------------------------- ------------- 
-    1 month        TrustBack.Me: Base plan                 $29.00    
-                   From Sep 26 2016 to Oct 26 2016.                  
-                                                                     
-                   Credit applied                         -$29.00    
-                                                                     
+    Quantity       Description                                      Price    
+ -------------- -------------------------------------- --------------------- 
+    1 month        TrustBack.Me: Base plan                         $29.00    
+                   From Sep 26 2016 to Oct 26 2016.                          
+                                                                             
+                   Credit applied                                 -$29.00    
+                                                                             
 ```
 
 ### Final notes

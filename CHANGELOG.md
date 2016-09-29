@@ -1,3 +1,11 @@
+## 1.1.1
+*(2016-09-29)*
+
+#### Features
+* Support `min_width` on column basis.
+
+---
+
 ## 1.1.0
 *(2016-09-28)*
 
