@@ -84,7 +84,8 @@ $options = [
             'cut' => true
         ],
         'price' => [
-            'align' => 'right'
+            'align' => 'right',
+            'min_width' => 15
         ]
     ]
 ];

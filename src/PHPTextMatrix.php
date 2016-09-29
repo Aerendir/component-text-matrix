@@ -249,6 +249,10 @@ class PHPTextMatrix
                     $this->rowsHeights[$rowPosition] = count($cellContent);
                 }
 
+                // Set the min_width if it is set
+                if (isset($this->options['columns'][$columnName]['min_width']))
+                    $this->columnsWidths[$columnName] = $this->options['columns'][$columnName]['min_width'];
+
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
                 if (count($cellContent) > $this->rowsHeights[$rowPosition]) {
                     /*
@@ -575,10 +579,12 @@ class PHPTextMatrix
         if (isset($this->options['columns'])) {
             $resolver = new OptionsResolver();
             $resolver->setDefined('max_width');
+            $resolver->setDefined('min_width');
             $resolver->setDefault('cut', false);
             $resolver->setDefault('align', 'left');
 
             $resolver->setAllowedTypes('max_width', 'integer');
+            $resolver->setAllowedTypes('min_width', 'integer');
             $resolver->setAllowedValues('cut', [true, false]);
             $resolver->setAllowedValues('align', ['left', 'right']);
 

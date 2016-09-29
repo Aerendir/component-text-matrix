@@ -552,7 +552,7 @@ EOF;
         $this::assertEquals(14, $textMatrix->getTableWidth());
     }
 
-    public function testCustomSeparators()
+    public function testCustomSeparatorsAndMinWidth()
     {
         $data = [
             [
@@ -589,19 +589,20 @@ EOF;
                     'cut' => true
                 ],
                 'price' => [
-                    'align' => 'right'
+                    'align' => 'right',
+                    'min_width' => 15
                 ]
             ]
         ];
 
         $expected = <<<'EOF'
-    Quantity       Description                              Price    
- -------------- -------------------------------------- ------------- 
-    1 month        TrustBack.Me: Base plan                 $29.00    
-                   From Sep 26 2016 to Oct 26 2016.                  
-                                                                     
-                   Credit applied                         -$29.00    
-                                                                     
+    Quantity       Description                                      Price    
+ -------------- -------------------------------------- --------------------- 
+    1 month        TrustBack.Me: Base plan                         $29.00    
+                   From Sep 26 2016 to Oct 26 2016.                          
+                                                                             
+                   Credit applied                                 -$29.00    
+                                                                             
 
 EOF;
 
@@ -609,6 +610,6 @@ EOF;
         $result = $textMatrix->render($options);
 
         $this::assertSame($expected, $result);
-        $this::assertEquals(69, $textMatrix->getTableWidth());
+        $this::assertEquals(77, $textMatrix->getTableWidth());
     }
 }
