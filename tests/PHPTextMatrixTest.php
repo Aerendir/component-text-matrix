@@ -608,7 +608,7 @@ EOF;
 
         $textMatrix = new PHPTextMatrix($data);
         $result = $textMatrix->render($options);
-
+        die(dump($result));
         $this::assertSame($expected, $result);
         $this::assertEquals(77, $textMatrix->getTableWidth());
     }

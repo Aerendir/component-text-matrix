@@ -329,13 +329,21 @@ class PHPTextMatrix
     private function drawDivider($prefix = 'sep_')
     {
         $divider = '';
+        // Internal counter
+        $i = 0;
         foreach ($this->columnsWidths as $width) {
             // Column width position for the xSep + left and rigth padding
             $times = $width + $this->options['cells_padding'][1] + $this->options['cells_padding'][3];
-            $divider .= $this->options[$prefix . 'x'] . $this->repeatChar($this->options[$prefix . 'h'], $times);
+            $divider .= (0 === $i && empty(trim($this->options[$prefix . 'x'])) ? '' : $this->options[$prefix . 'x']) . $this->repeatChar($this->options[$prefix . 'h'], $times);
+
+            // Increment internal counter
+            $i++;
         }
 
-        return $divider . $this->options[$prefix . 'x'] . PHP_EOL;
+        $divider .= (empty(trim($this->options[$prefix . 'x'])) ? '' : $this->options[$prefix . 'x']);
+        $divider = empty(trim($divider)) ? '' : $divider;
+
+        return $divider . PHP_EOL;
     }
 
     /**
@@ -348,6 +356,9 @@ class PHPTextMatrix
     private function drawLine($lineNumber, $rowContent, $sepPrefix = 'sep_')
     {
         $line = '';
+
+        // Counter
+        $i = 0;
         foreach ($rowContent as $columnName => $cellContent) {
             $lineContent = '';
 
@@ -367,7 +378,7 @@ class PHPTextMatrix
             // Draw the line
             $line
                 // Vertical Separator
-                .= $this->options[$sepPrefix . 'v']
+                .= (0 === $i && empty(trim($this->options[$sepPrefix . 'v']))) ? '' : $this->options[$sepPrefix . 'v']
                 // + left padding
                 . $this->drawSpaces($this->options['cells_padding'][3]);
 
@@ -395,9 +406,12 @@ class PHPTextMatrix
 
             // + right padding
             $line .= $this->drawSpaces($this->options['cells_padding'][1]);
+
+            // increment counter
+            $i++;
         }
 
-        return $line . $this->options[$sepPrefix . 'v'] . PHP_EOL;
+        return $line . (empty(trim($this->options[$sepPrefix . 'v'])) ? '' : $this->options[$sepPrefix . 'v']) . PHP_EOL;
     }
 
     /**
