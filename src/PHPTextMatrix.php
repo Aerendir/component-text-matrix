@@ -49,7 +49,7 @@ class PHPTextMatrix
     /** @var string $table The rendered table in the plain text format */
     private $table;
 
-    /** @var  int $tableWidth The total width of the table */
+    /** @var int $tableWidth The total width of the table */
     private $tableWidth;
 
     /**
@@ -250,8 +250,9 @@ class PHPTextMatrix
                 }
 
                 // Set the min_width if it is set
-                if (isset($this->options['columns'][$columnName]['min_width']))
+                if (isset($this->options['columns'][$columnName]['min_width'])) {
                     $this->columnsWidths[$columnName] = $this->options['columns'][$columnName]['min_width'];
+                }
 
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
                 if (count($cellContent) > $this->rowsHeights[$rowPosition]) {
@@ -286,7 +287,7 @@ class PHPTextMatrix
     }
 
     /**
-     * Calculates the total width of the table
+     * Calculates the total width of the table.
      *
      * @return int
      */
@@ -296,8 +297,9 @@ class PHPTextMatrix
         $tableWidth = 0;
 
         // Add the width of the columns
-        foreach ($this->columnsWidths as $width)
+        foreach ($this->columnsWidths as $width) {
             $tableWidth += $width;
+        }
 
         // Add 1 for the first separator
         $tableWidth += 1;
