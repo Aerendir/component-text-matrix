@@ -70,7 +70,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    public function render(array $options = [])
+    public function render(array $options = []): string
     {
         // Set the options to use
         $this->resolveOptions($options);
@@ -120,7 +120,7 @@ class PHPTextMatrix
      *
      * @return bool False if the validation fails, true if all succeeds
      */
-    public function validate()
+    public function validate(): bool
     {
         // The number of columns
         $numberOfColumns = null;
@@ -163,7 +163,7 @@ class PHPTextMatrix
      *
      * @return array
      */
-    public function getErrors()
+    public function getErrors(): array
     {
         return $this->errors;
     }
@@ -173,7 +173,7 @@ class PHPTextMatrix
      *
      * @return int
      */
-    public function getTableWidth()
+    public function getTableWidth(): int
     {
         return $this->tableWidth;
     }
@@ -229,9 +229,9 @@ class PHPTextMatrix
      *
      * @param string $cellContent
      *
-     * @return string mixed
+     * @return string
      */
-    private function reduceSpaces($cellContent)
+    private function reduceSpaces(string $cellContent): string
     {
         return preg_replace('/\x20+/', ' ', $cellContent);
     }
@@ -293,7 +293,7 @@ class PHPTextMatrix
      *
      * @return int
      */
-    private function calculateTableWidth()
+    private function calculateTableWidth(): int
     {
         // Now calculate the total width of the table
         $tableWidth = 0;
@@ -318,7 +318,7 @@ class PHPTextMatrix
     /**
      * @return string
      */
-    private function drawHeaderDivider()
+    private function drawHeaderDivider(): string
     {
         return $this->drawDivider('sep_head_');
     }
@@ -330,7 +330,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    private function drawDivider($prefix = 'sep_')
+    private function drawDivider(string $prefix = 'sep_'): string
     {
         $divider = '';
         foreach ($this->columnsWidths as $width) {
@@ -349,7 +349,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    private function drawLine($lineNumber, $rowContent, $sepPrefix = 'sep_')
+    private function drawLine(int $lineNumber, array $rowContent, string $sepPrefix = 'sep_'): string
     {
         $line = '';
         foreach ($rowContent as $columnName => $cellContent) {
@@ -410,7 +410,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    private function drawRow($rowPosition, array $rowContent)
+    private function drawRow(int $rowPosition, array $rowContent): string
     {
         $row = '';
         for ($lineNumber = 0; $lineNumber < $this->rowsHeights[$rowPosition]; ++$lineNumber) {
@@ -429,7 +429,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    private function drawSpaces($amount)
+    private function drawSpaces(int $amount): string
     {
         return $this->repeatChar(' ', $amount);
     }
@@ -440,7 +440,7 @@ class PHPTextMatrix
      *
      * @return string
      */
-    private function repeatChar($char, $times)
+    private function repeatChar(string $char, int $times): string
     {
         if (0 === $times) {
             return '';
@@ -518,7 +518,7 @@ class PHPTextMatrix
      *
      * @return array
      */
-    private function resolveCellsPaddings()
+    private function resolveCellsPaddings(): array
     {
         $return = [0, 0, 0, 0];
 
@@ -576,7 +576,7 @@ class PHPTextMatrix
     /**
      * @return array
      */
-    private function resolveColumnsOptions()
+    private function resolveColumnsOptions(): array
     {
         $return = [];
         // Sub- resovler for columns

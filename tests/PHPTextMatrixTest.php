@@ -78,7 +78,7 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render();
 
-        $this::assertFalse($result);
+        $this::assertEmpty($result);
 
         $errors = $textMatrix->getErrors();
 
@@ -94,7 +94,7 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render();
 
-        $this::assertFalse($result);
+        $this::assertEmpty($result);
 
         $errors = $textMatrix->getErrors();
 
