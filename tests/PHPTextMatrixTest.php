@@ -14,13 +14,14 @@
 
 namespace SerendipityHQ\Component\PHPTextMatrixTest;
 
+use PHPUnit\Framework\TestCase;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * @author Adamo "Aerendir" Crespi <hello@aerendir.me>
  */
-class PHPTextMatrixTest extends \PHPUnit_Framework_TestCase
+class PHPTextMatrixTest extends TestCase
 {
     /** @var array */
     private $data;
