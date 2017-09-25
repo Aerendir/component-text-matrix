@@ -4,7 +4,7 @@ matrix:
     include:
         - php: 5.6
         - php: 7.0
-        - php: hhvm
+        - php: 7.1
 
 cache:
     directories:
@@ -14,8 +14,11 @@ install:
     - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction
 
 script:
-    - phpunit --verbose --coverage-clover build/logs/clover.xml
     - phpenv config-rm xdebug.ini || return 0
+    # Check the style rules are applied
+    - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+    # Run PHPUnit
+    - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
 
 after_script:
   - CODECLIMATE_REPO_TOKEN="f34da85cf2395de68d6b4aeacd0274a225faeba0afbe91f034fb9c830ec71152" vendor/bin/test-reporter --stdout > codeclimate.json

@@ -1,12 +1,15 @@
 <?php
 
 /*
- * This file is part of the PHPTextMatrix Component.
+ * This file is part of the PHP Text Matrix Component.
  *
- * (c) Adamo Crespi <hello@aerendir.me>
+ * Copyright Adamo Aerendir Crespi 2016-2017.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * See the LICENSE for more details.
+ *
+ * @author    Adamo Aerendir Crespi <hello@aerendir.me>
+ * @copyright Copyright (C) 2012 - 2017 Aerendir. All rights reserved.
+ * @license   MIT License
  */
 
 namespace SerendipityHQ\Component\PHPTextMatrix;
@@ -127,7 +130,7 @@ class PHPTextMatrix
 
         // Check that there are rows in the data
         if (0 >= count($this->data)) {
-            $message = 'There are no rows in the table';
+            $message        = 'There are no rows in the table';
             $this->errors[] = $message;
 
             return false;
@@ -196,7 +199,7 @@ class PHPTextMatrix
 
                 // ... We have a max_width set: split the column
                 $length = $this->options['columns'][$columnName]['max_width'];
-                $cut = $this->options['columns'][$columnName]['cut'];
+                $cut    = $this->options['columns'][$columnName]['cut'];
 
                 $wrapped = wordwrap($cellContent, $length, PHP_EOL, $cut);
 
@@ -242,7 +245,6 @@ class PHPTextMatrix
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content ...
             foreach ($rowContent as $columnName => $cellContent) {
-
                 // If we don't already know the height of this row...
                 if (false === isset($this->rowsHeights[$rowPosition])) {
                     // ... we save the current calculated height
@@ -470,12 +472,12 @@ class PHPTextMatrix
             // The vertical separator
             'sep_v' => '|',
             // The cross separator
-            'sep_x' => '+',
+            'sep_x'      => '+',
             'has_header' => false,
             // Determines if the top divider of the header has to be shown or not
             'show_head_top_sep' => true,
             // Determine if the content has to be aligned on the left or on the right
-            'default_cell_align' => 'left'
+            'default_cell_align' => 'left',
             ])
             // This options can be passed or not
                 ->setDefined('cells_padding')
@@ -500,7 +502,7 @@ class PHPTextMatrix
         $this->options = $resolver->resolve($options);
 
         $this->options['cells_padding'] = $this->resolveCellsPaddings();
-        $this->options['columns'] = $this->resolveColumnsOptions();
+        $this->options['columns']       = $this->resolveColumnsOptions();
     }
 
     /**
@@ -512,9 +514,9 @@ class PHPTextMatrix
      *
      * @see http://www.w3schools.com/css/css_padding.asp
      *
-     * @return array
-     *
      * @throws \InvalidArgumentException If the value is not an integer
+     *
+     * @return array
      */
     private function resolveCellsPaddings()
     {
@@ -591,7 +593,7 @@ class PHPTextMatrix
             $resolver->setAllowedValues('align', ['left', 'right']);
 
             foreach ($this->options['columns'] as $columnName => $columnOptions) {
-                $resolved = $resolver->resolve($columnOptions);
+                $resolved            = $resolver->resolve($columnOptions);
                 $return[$columnName] = $resolved;
             }
         }
