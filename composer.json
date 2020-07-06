@@ -13,14 +13,16 @@
     ],
     "require": {
         "php": "^7.0",
-        "symfony/options-resolver": "^2.8||^3.0||^4.0"
+        "symfony/options-resolver": "^2.8||^3.0||^4.0",
+        "thecodingmachine/safe": "^0.1|^1.0"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master",
         "friendsofphp/php-cs-fixer": "^2",
         "phpunit/phpunit": "^6||^7",
+        "roave/security-advisories": "dev-master",
         "symfony/var-dumper": "^2.8||^3.0||^4.0",
-        "roave/security-advisories": "dev-master"
+        "thecodingmachine/phpstan-safe-rule": "@stable"
     },
     "autoload": {
         "psr-4": {
