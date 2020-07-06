@@ -26,7 +26,11 @@
     },
     "autoload": {
         "psr-4": {
-            "SerendipityHQ\\Component\\PHPTextMatrix\\": "src",
+            "SerendipityHQ\\Component\\PHPTextMatrix\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\": "tests"
         }
     },
