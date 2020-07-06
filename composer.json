@@ -27,5 +27,8 @@
             "SerendipityHQ\\Component\\PHPTextMatrix\\": "src",
             "SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\": "tests"
         }
+    },
+    "config":{
+        "sort-packages": true
     }
 }
