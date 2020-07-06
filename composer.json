@@ -18,7 +18,9 @@
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master",
-        "friendsofphp/php-cs-fixer": "^2",
+        "drenso/phan-extensions": "@stable",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phan/phan": "^3.0",
         "phpunit/phpunit": "^6||^7",
         "roave/security-advisories": "dev-master",
         "symfony/var-dumper": "^3.0||^4.0|5.0",
@@ -36,5 +38,8 @@
     },
     "config":{
         "sort-packages": true
+    },
+    "conflict": {
+        "nikic/php-parser": "4.6.0"
     }
 }
