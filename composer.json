@@ -17,7 +17,6 @@
         "thecodingmachine/safe": "^0.1|^1.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "dev-master",
         "drenso/phan-extensions": "@stable",
         "friendsofphp/php-cs-fixer": "^2.16",
         "phan/phan": "^3.0",
