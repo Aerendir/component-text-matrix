@@ -1,0 +1,39 @@
+name: Rector
+
+on: [push, pull_request]
+
+jobs:
+    serendipity_hq:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest]
+                php: ['7.4']
+                symfony: ['~3.4', '~4.4', '~5.0']
+        name: PHP ${{ matrix.php }} SF ${{ matrix.symfony }} on ${{ matrix.os }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v1
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none # disable xdebug, pcov
+                  tools: prestissimo
+                  extensions: intl
+
+            - name: Fix Symfony version
+              run: |
+                  composer req symfony/flex
+                  composer config extra.symfony.require "${{ matrix.symfony }}"
+
+            - name: Install Composer deps
+              run: |
+                  composer update --no-interaction --no-suggest
+
+            - name: Run Rector
+              run: |
+                  ./vendor/bin/rector process src --dry-run
+                  ./vendor/bin/rector process tests --dry-run
