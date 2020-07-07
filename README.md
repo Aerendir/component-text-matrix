@@ -5,7 +5,6 @@
 [![Code Climate](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/gpa.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
 [![Test Coverage](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/coverage.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
 [![Issue Count](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/issue_count.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/54b8a799-e95e-4773-b209-c96862d34476/mini.png)](https://insight.sensiolabs.com/projects/54b8a799-e95e-4773-b209-c96862d34476)
 [![Dependency Status](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1)
 
 # PHPTextMatrix
@@ -30,7 +29,7 @@ or, in your composer.json
     "require": {
       "serendipity_hq/php_text_matrix": "~1"
     }
-  
+
 
 This library follows the http://semver.org/ versioning conventions.
 
@@ -260,13 +259,13 @@ echo '</pre>';
 This is the generated table:
 
 ```
-    Quantity       Description                                      Price    
- -------------- -------------------------------------- --------------------- 
-    1 month        TrustBack.Me: Base plan                         $29.00    
-                   From Sep 26 2016 to Oct 26 2016.                          
-                                                                             
-                   Credit applied                                 -$29.00    
-                                                                             
+    Quantity       Description                                      Price
+ -------------- -------------------------------------- ---------------------
+    1 month        TrustBack.Me: Base plan                         $29.00
+                   From Sep 26 2016 to Oct 26 2016.
+
+                   Credit applied                                 -$29.00
+
 ```
 
 ### Final notes
@@ -291,6 +290,6 @@ If the padding property has **two** values:
 If the padding property has **one** value:
     * padding: 25px;
         * all four paddings are 25px
-If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`). 
+If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`).
 
 For more information, see the unit tests in the `tests` folder, the methods `resolveOptions()` (where all options are validated) or the examples.
