@@ -1,5 +1,9 @@
-[![Latest Stable Version](https://poser.pugx.org/serendipity_hq/php_text_matrix/v/stable.png)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![Build Status](https://travis-ci.org/Aerendir/PHPTextMatrix.svg?branch=master)](https://travis-ci.org/Aerendir/PHPTextMatrix)
+<p align="center">
+    <a href="http://www.serendipityhq.com" target="_blank">
+        <img src="http://www.serendipityhq.com/assets/open-source-projects/Logo-SerendipityHQ-Icon-Text-Purple.png">
+    </a>
+</p>
+
 [![Total Downloads](https://poser.pugx.org/serendipity_hq/php_text_matrix/downloads.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
 [![License](https://poser.pugx.org/serendipity_hq/php_text_matrix/license.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
 [![Code Climate](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/gpa.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
@@ -7,7 +11,33 @@
 [![Issue Count](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/issue_count.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
 [![Dependency Status](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1)
 
-# PHPTextMatrix
+PHP TEXT MATRIX
+===============
+
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/serendipity_hq/php_text_matrix?color=%238892BF)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
+[![Tested with Symfony ^3.0](https://img.shields.io/badge/Symfony-%5E3.0-333)](https://github.com/Aerendir/php_text_matrix/actions)
+[![Tested with Symfony ^4.0](https://img.shields.io/badge/Symfony-%5E4.0-333)](https://github.com/Aerendir/php_text_matrix/actions)
+[![Tested with Symfony ^5.0](https://img.shields.io/badge/Symfony-%5E5.0-333)](https://github.com/Aerendir/php_text_matrix/actions)
+
+[![Latest Stable Version](https://poser.pugx.org/serendipity_hq/php_text_matrix/v/stable.png)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
+[![Total Downloads](https://poser.pugx.org/serendipity_hq/php_text_matrix/downloads.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
+[![License](https://poser.pugx.org/serendipity_hq/php_text_matrix/license.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=coverage)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=alert_status)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=security_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+
+![Phan](https://github.com/Aerendir/php_text_matrix/workflows/Phan/badge.svg)
+![PHPStan](https://github.com/Aerendir/php_text_matrix/workflows/PHPStan/badge.svg)
+![PSalm](https://github.com/Aerendir/php_text_matrix/workflows/PSalm/badge.svg)
+![PHPUnit](https://github.com/Aerendir/php_text_matrix/workflows/PHPunit/badge.svg)
+![Composer](https://github.com/Aerendir/php_text_matrix/workflows/Composer/badge.svg)
+![PHP CS Fixer](https://github.com/Aerendir/php_text_matrix/workflows/PHP%20CS%20Fixer/badge.svg)
+![Rector](https://github.com/Aerendir/php_text_matrix/workflows/Rector/badge.svg)
 
 PHPTextMatrix renders into a plain text table an array representing a matrix of data.
 
