@@ -173,7 +173,7 @@ final class PHPTextMatrix
         $this->errors = [];
 
         // Check that there are rows in the data
-        if (0 >= count($this->data)) {
+        if (0 >= (\is_array($this->data) || $this->data instanceof \Countable ? \count($this->data) : 0)) {
             $message        = 'There are no rows in the table';
             $this->errors[] = $message;
 
@@ -182,7 +182,7 @@ final class PHPTextMatrix
 
         // Check that all rows have the same number of columns
         foreach ($this->data as $row) {
-            $found = count($row);
+            $found = \is_array($row) || $row instanceof \Countable ? \count($row) : 0;
 
             if (null === $numberOfColumns) {
                 $numberOfColumns = $found;
@@ -199,7 +199,7 @@ final class PHPTextMatrix
             }
         }
 
-        return 0 < count($this->errors) ? false : true;
+        return 0 >= (\is_array($this->errors) || $this->errors instanceof \Countable ? \count($this->errors) : 0);
     }
 
     /**
@@ -292,7 +292,7 @@ final class PHPTextMatrix
                 // If we don't already know the height of this row...
                 if (false === isset($this->rowsHeights[$rowPosition])) {
                     // ... we save the current calculated height
-                    $this->rowsHeights[$rowPosition] = count($cellContent);
+                    $this->rowsHeights[$rowPosition] = \is_array($cellContent) || $cellContent instanceof \Countable ? \count($cellContent) : 0;
                 }
 
                 // Set the min_width if it is set
@@ -348,7 +348,7 @@ final class PHPTextMatrix
         }
 
         // Add 1 for the first separator
-        $tableWidth += 1;
+        $tableWidth++;
 
         // Add the left and right padding * number of columns
         $tableWidth += ($this->options[self::CELLS_PADDING][1] + $this->options[self::CELLS_PADDING][3]) * \count($this->columnsWidths);
