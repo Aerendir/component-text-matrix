@@ -12,7 +12,7 @@ $finder = PhpCsFixer\Finder::create()
 $header = <<<EOF
 This file is part of the PHP Text Matrix Component.
 
-Copyright Adamo Aerendir Crespi 2016-2017.
+Copyright Adamo Aerendir Crespi 2016-2020.
 
 See the LICENSE for more details.
 
