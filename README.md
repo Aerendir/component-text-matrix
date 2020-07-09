@@ -12,6 +12,8 @@ PHP TEXT MATRIX
 [![Tested with Symfony ^4.0](https://img.shields.io/badge/Symfony-%5E4.0-333)](https://github.com/Aerendir/PHPTextMatrix/actions)
 [![Tested with Symfony ^5.0](https://img.shields.io/badge/Symfony-%5E5.0-333)](https://github.com/Aerendir/PHPTextMatrix/actions)
 
+![Requires PHP Intl extension](https://img.shields.io/badge/Requires-ext--iconv-%238892BF)
+
 [![Latest Stable Version](https://poser.pugx.org/serendipity_hq/php_text_matrix/v/stable.png)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
 [![Total Downloads](https://poser.pugx.org/serendipity_hq/php_text_matrix/downloads.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
 [![License](https://poser.pugx.org/serendipity_hq/php_text_matrix/license.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
