@@ -92,7 +92,7 @@ final class PHPTextMatrix
     private $data;
 
     /** @var array $errors Contains the errors found by the validate() method */
-    private $errors;
+    private $errors = [];
 
     /**
      * @var array For each column, contains the length of the longest line in each splitted cell.
@@ -107,10 +107,10 @@ final class PHPTextMatrix
     private $rowsHeights = [];
 
     /** @var array $options The options to render the table */
-    private $options;
+    private $options = [];
 
     /** @var int $tableWidth The total width of the table */
-    private $tableWidth;
+    private $tableWidth = 0;
 
     /**
      * @param array $data
@@ -184,7 +184,7 @@ final class PHPTextMatrix
         $this->errors = [];
 
         // Check that there are rows in the data
-        if (0 >= (\is_array($this->data) || $this->data instanceof \Countable ? \count($this->data) : 0)) {
+        if (0 >= \count($this->data)) {
             $message        = 'There are no rows in the table';
             $this->errors[] = $message;
 
@@ -210,7 +210,7 @@ final class PHPTextMatrix
             }
         }
 
-        return 0 >= (\is_array($this->errors) || $this->errors instanceof \Countable ? \count($this->errors) : 0);
+        return 0 >= \count($this->errors);
     }
 
     /**
@@ -286,7 +286,13 @@ final class PHPTextMatrix
      */
     private function reduceSpaces(string $cellContent): string
     {
-        return \Safe\preg_replace('#\x20+#', ' ', $cellContent);
+        $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
+
+        if (is_array($result)) {
+            $result = $result[0];
+        }
+
+        return $result;
     }
 
     /**
@@ -575,15 +581,15 @@ final class PHPTextMatrix
 
         // Create a resolver to validate passed values
         $resolver = new OptionsResolver();
-        $resolver->setDefined(0);
-        $resolver->setDefined(1);
-        $resolver->setDefined(2);
-        $resolver->setDefined(3);
+        $resolver->setDefined('0');
+        $resolver->setDefined('1');
+        $resolver->setDefined('2');
+        $resolver->setDefined('3');
 
-        $resolver->setAllowedTypes(0, self::INTEGER);
-        $resolver->setAllowedTypes(1, self::INTEGER);
-        $resolver->setAllowedTypes(2, self::INTEGER);
-        $resolver->setAllowedTypes(3, self::INTEGER);
+        $resolver->setAllowedTypes('0', self::INTEGER);
+        $resolver->setAllowedTypes('1', self::INTEGER);
+        $resolver->setAllowedTypes('2', self::INTEGER);
+        $resolver->setAllowedTypes('3', self::INTEGER);
 
         $padding = $this->options[self::CELLS_PADDING];
 
