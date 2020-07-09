@@ -122,7 +122,7 @@ final class PHPTextMatrix
      *
      * @param array $options
      *
-     * @return string|bool
+     * @return bool|string
      */
     public function render(array $options = [])
     {
