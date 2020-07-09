@@ -48,6 +48,7 @@ parameters:
         - 'Rector\CodingStyle\Rector\Switch_\BinarySwitchToIfElseRector'
         - 'Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector'
         - 'Rector\Php56\Rector\FunctionLike\AddDefaultValueForUndefinedVariableRector'
+        - 'Rector\Privatization\Rector\ClassConst\PrivatizeLocalClassConstantRector'
         - 'Rector\Privatization\Rector\ClassMethod\PrivatizeLocalOnlyMethodRector'
         - 'Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector'
         - 'Rector\SOLID\Rector\Property\AddFalseDefaultToBoolPropertyRector'
