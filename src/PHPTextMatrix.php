@@ -267,8 +267,11 @@ final class PHPTextMatrix
                 }
 
                 // ... We have a max_width set: split the column
+                /** @var int $length */
                 $length = $this->options[self::COLUMNS][$columnName][self::MAX_WIDTH];
-                $cut    = $this->options[self::COLUMNS][$columnName][self::CUT];
+
+                /** @var bool $cut */
+                $cut = $this->options[self::COLUMNS][$columnName][self::CUT];
 
                 $wrapped = \wordwrap($cellContent, $length, PHP_EOL, $cut);
 
@@ -307,10 +310,11 @@ final class PHPTextMatrix
         $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
 
         if (\is_array($result)) {
+            /** @var mixed $result */
             $result = $result[0];
         }
 
-        return $result;
+        return (string) $result;
     }
 
     /**
@@ -321,13 +325,21 @@ final class PHPTextMatrix
     private function calculateSizes(): void
     {
         // For each row...
+        /**
+         * @var int $rowPosition
+         * @var array $rowContent
+         */
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content ...
+            /**
+             * @var string $columnName
+             * @var array $cellContent
+             */
             foreach ($rowContent as $columnName => $cellContent) {
                 // If we don't already know the height of this row...
                 if (false === isset($this->rowsHeights[$rowPosition])) {
                     // ... we save the current calculated height
-                    $this->rowsHeights[$rowPosition] = \is_array($cellContent) || $cellContent instanceof \Countable ? \count($cellContent) : 0;
+                    $this->rowsHeights[$rowPosition] = \count($cellContent);
                 }
 
                 // Set the min_width if it is set
@@ -336,14 +348,15 @@ final class PHPTextMatrix
                 }
 
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
-                if ((\is_array($cellContent) || $cellContent instanceof \Countable ? \count($cellContent) : 0) > $this->rowsHeights[$rowPosition]) {
+                if (\count($cellContent) > $this->rowsHeights[$rowPosition]) {
                     /*
                      * The height of this row is the highest found: use this to set the height of the entire row.
                      */
-                    $this->rowsHeights[$rowPosition] = \is_array($cellContent) || $cellContent instanceof \Countable ? \count($cellContent) : 0;
+                    $this->rowsHeights[$rowPosition] = \count($cellContent);
                 }
 
                 // ... and calculate the length of each line to get the max length of the column
+                /** @var string $lineContent */
                 foreach ($cellContent as $lineContent) {
                     // Get the length of the cell
                     $contentLength = \iconv_strlen($lineContent);
@@ -370,7 +383,9 @@ final class PHPTextMatrix
     /**
      * Calculates the total width of the table.
      *
-     * @return int
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedOperand
+     * @psalm-suppress MixedReturnStatement
      */
     private function calculateTableWidth(): int
     {
@@ -378,6 +393,7 @@ final class PHPTextMatrix
         $tableWidth = 0;
 
         // Add the width of the columns
+        /** @var int $width */
         foreach ($this->columnsWidths as $width) {
             $tableWidth += $width;
         }
@@ -408,12 +424,16 @@ final class PHPTextMatrix
      * @param string $prefix
      *
      * @return string
+     *
+     * @psalm-suppress MixedOperand
      */
     private function drawDivider(string $prefix = self::SEP_): string
     {
         $divider = '';
+        /** @var int $width */
         foreach ($this->columnsWidths as $width) {
             // Column width position for the xSep + left and rigth padding
+            /** @var int $times */
             $times = $width + $this->options[self::CELLS_PADDING][1] + $this->options[self::CELLS_PADDING][3];
             $divider .= $this->options[$prefix . 'x'] . $this->repeatChar($this->options[$prefix . 'h'], $times);
         }
@@ -427,17 +447,29 @@ final class PHPTextMatrix
      * @param string $sepPrefix
      *
      * @return string
+     *
+     * @psalm-suppress MixedOperand
      */
     private function drawLine(int $lineNumber, array $rowContent, string $sepPrefix = self::SEP_): string
     {
         $line = '';
+        /**
+         * @var string $columnName
+         * @var array $cellContent
+         */
         foreach ($rowContent as $columnName => $cellContent) {
+            /** @var string $lineContent */
             $lineContent = $cellContent[$lineNumber] ?? '';
             $alignSpaces = 0;
 
             // Count characters and draw spaces if needed
-            if (\iconv_strlen($lineContent) < $this->columnsWidths[$columnName]) {
-                $alignSpaces = $this->columnsWidths[$columnName] - \iconv_strlen($lineContent);
+            $lineContentLength = \iconv_strlen($lineContent);
+            if (false === is_int($lineContentLength)) {
+                throw new \RuntimeException('Something went wrong counting the length of the content.');
+            }
+            if ($lineContentLength < $this->columnsWidths[$columnName]) {
+                /** @var int $alignSpaces */
+                $alignSpaces = $this->columnsWidths[$columnName] - $lineContentLength;
             }
 
             // Draw the line
@@ -528,6 +560,8 @@ final class PHPTextMatrix
 
     /**
      * @param array $options
+     *
+     * @psalm-suppress MissingClosureParamType
      */
     private function resolveOptions(array $options = []): void
     {
