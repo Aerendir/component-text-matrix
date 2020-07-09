@@ -156,6 +156,10 @@ final class PHPTextMatrix
             $table = '';
         }
 
+        /**
+         * @var int $rowPosition
+         * @var array $rowContent
+         */
         foreach ($this->data as $rowPosition => $rowContent) {
             $table .= $this->drawRow($rowPosition, $rowContent);
             $table .= $this->options[self::HAS_HEADER] && 0 === $rowPosition ? $this->drawHeaderDivider() : $this->drawDivider();
@@ -192,8 +196,9 @@ final class PHPTextMatrix
         }
 
         // Check that all rows have the same number of columns
+        /** @var array $row */
         foreach ($this->data as $row) {
-            $found = \is_array($row) || $row instanceof \Countable ? \count($row) : 0;
+            $found = \count($row);
 
             if (null === $numberOfColumns) {
                 $numberOfColumns = $found;
@@ -239,8 +244,16 @@ final class PHPTextMatrix
     private function splitCellsContent(): void
     {
         // For each row...
+        /**
+         * @var int $rowPosition
+         * @var array $rowContent
+         */
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content
+            /**
+             * @var string $columnName
+             * @var string $cellContent
+             */
             foreach ($rowContent as $columnName => $cellContent) {
                 // Remove extra spaces from the string
                 $cellContent = $this->reduceSpaces($cellContent);
@@ -593,6 +606,7 @@ final class PHPTextMatrix
         $resolver->setAllowedTypes('2', self::INTEGER);
         $resolver->setAllowedTypes('3', self::INTEGER);
 
+        /** @var array|int $padding */
         $padding = $this->options[self::CELLS_PADDING];
 
         // If is only an integer, make it an array with only one set value
@@ -600,7 +614,7 @@ final class PHPTextMatrix
             $padding = [$padding];
         }
 
-        $count = \is_array($padding) || $padding instanceof \Countable ? \count($padding) : 0;
+        $count = \count($padding);
 
         switch ($count) {
             case 1:
@@ -646,6 +660,10 @@ final class PHPTextMatrix
             $resolver->setAllowedValues(self::CUT, [true, false]);
             $resolver->setAllowedValues(self::ALIGN, [self::ALIGN_LEFT, self::ALIGN_RIGHT]);
 
+            /**
+             * @var string $columnName
+             * @var array $columnOptions
+             */
             foreach ($this->options[self::COLUMNS] as $columnName => $columnOptions) {
                 $resolved            = $resolver->resolve($columnOptions);
                 $return[$columnName] = $resolved;

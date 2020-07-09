@@ -21,7 +21,14 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
+        <DocblockTypeContradiction errorLevel="suppress" />
         <MissingThrowsDocblock errorLevel="suppress" />
+        <MixedArgument errorLevel="suppress" />
+        <MixedArrayAccess errorLevel="suppress" />
+        <MixedArrayAssignment errorLevel="suppress" />
+        <MixedArrayOffset errorLevel="suppress" />
+        <PossiblyUndefinedMethod errorLevel="suppress" />
+        <UndefinedInterfaceMethod errorLevel="suppress" />
         <!-- Required as Psalm fails on - -prefer-lowest -->
         <PossiblyUndefinedArrayOffset errorLevel="suppress" />
     </issueHandlers>
