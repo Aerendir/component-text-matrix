@@ -122,9 +122,9 @@ final class PHPTextMatrix
      *
      * @param array $options
      *
-     * @return string
+     * @return string|bool
      */
-    public function render(array $options = []): string
+    public function render(array $options = [])
     {
         // Set the options to use
         $this->resolveOptions($options);
