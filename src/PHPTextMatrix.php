@@ -79,11 +79,14 @@ final class PHPTextMatrix
     /** @var string */
     private const SEP_ = 'sep_';
 
-    /* @var string */
-    private const STRING = 'string';
+    /** @var string */
+    private const ARRAY = 'array';
 
     /** @var string */
     private const INTEGER = 'integer';
+
+    /* @var string */
+    private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
     private $data;
@@ -403,14 +406,7 @@ final class PHPTextMatrix
     {
         $line = '';
         foreach ($rowContent as $columnName => $cellContent) {
-            $lineContent = '';
-
-            // If the line contains some text...
-            if (isset($cellContent[$lineNumber])) {
-                // Use it
-                $lineContent = $cellContent[$lineNumber];
-            }
-
+            $lineContent = $cellContent[$lineNumber] ?? '';
             $alignSpaces = 0;
 
             // Count characters and draw spaces if needed
@@ -537,11 +533,11 @@ final class PHPTextMatrix
         $resolver->setAllowedTypes(self::SEP_H, self::STRING)
             ->setAllowedTypes(self::SEP_V, self::STRING)
             ->setAllowedTypes(self::SEP_X, self::STRING)
-            ->setAllowedTypes(self::CELLS_PADDING, ['array', self::INTEGER])
-            ->setAllowedTypes(self::COLUMNS, 'array');
+            ->setAllowedTypes(self::CELLS_PADDING, [self::ARRAY, self::INTEGER])
+            ->setAllowedTypes(self::COLUMNS, self::ARRAY);
 
         // Set value validation
-        $resolver->setAllowedValues(self::CELLS_PADDING, function ($value): bool {
+        $resolver->setAllowedValues(self::CELLS_PADDING, static function ($value): bool {
             if (\is_array($value)) {
                 return \count($value) <= 4;
             }
@@ -640,7 +636,7 @@ final class PHPTextMatrix
             $resolver->setAllowedTypes(self::MAX_WIDTH, self::INTEGER);
             $resolver->setAllowedTypes(self::MIN_WIDTH, self::INTEGER);
             $resolver->setAllowedValues(self::CUT, [true, false]);
-            $resolver->setAllowedValues(self::ALIGN, [self::ALIGN_LEFT, 'right']);
+            $resolver->setAllowedValues(self::ALIGN, [self::ALIGN_LEFT, self::ALIGN_RIGHT]);
 
             foreach ($this->options[self::COLUMNS] as $columnName => $columnOptions) {
                 $resolved            = $resolver->resolve($columnOptions);

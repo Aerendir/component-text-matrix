@@ -147,8 +147,8 @@ EOF;
         \array_unshift($this->data, $header);
 
         $options = [
-            PHPTextMatrix::HAS_HEADER              => true,
-            PHPTextMatrix::SHOW_HEAD_TOP_SEPARATOR => false,
+            PHPTextMatrix::HAS_HEADER        => true,
+            PHPTextMatrix::SHOW_HEAD_TOP_SEP => false,
         ];
 
         $expected = <<<'EOF'
@@ -599,16 +599,7 @@ EOF;
             ],
         ];
 
-        $expected = <<<'EOF'
-    Quantity       Description                                      Price
- -------------- -------------------------------------- ---------------------
-    1 month        TrustBack.Me: Base plan                         $29.00
-                   From Sep 26 2016 to Oct 26 2016.
-
-                   Credit applied                                 -$29.00
-
-
-EOF;
+        $expected = \Safe\file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
 
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
