@@ -262,7 +262,8 @@ final class PHPTextMatrix
                 if (false === isset($this->options[self::COLUMNS][$columnName][self::MAX_WIDTH])) {
                     // ... simply wrap the content in an array and continue
                     $this->data[$rowPosition][$columnName] = [$cellContent];
-                    goto addVerticalPadding;
+                    $this->addVerticalPadding($rowPosition, $columnName);
+                    continue;
                 }
 
                 // ... We have a max_width set: split the column
@@ -274,20 +275,24 @@ final class PHPTextMatrix
                 $this->data[$rowPosition][$columnName] = \explode(PHP_EOL, $wrapped);
 
                 // At the end, add the vertical padding to the cell's content
-                addVerticalPadding:
-                if (0 < $this->options[self::CELLS_PADDING][0]) {
-                    // Now add the top padding
-                    for ($paddingLine = 0; $paddingLine < $this->options[self::CELLS_PADDING][0]; ++$paddingLine) {
-                        \array_unshift($this->data[$rowPosition][$columnName], '');
-                    }
-                }
+                $this->addVerticalPadding($rowPosition, $columnName);
+            }
+        }
+    }
 
-                if (0 < $this->options[self::CELLS_PADDING][2]) {
-                    // And the bottom padding
-                    for ($paddingLine = 0; $paddingLine < $this->options[self::CELLS_PADDING][2]; ++$paddingLine) {
-                        $this->data[$rowPosition][$columnName][] = '';
-                    }
-                }
+    private function addVerticalPadding(int $rowPosition, string $columnName):void
+    {
+        if (0 < $this->options[self::CELLS_PADDING][0]) {
+            // Now add the top padding
+            for ($paddingLine = 0; $paddingLine < $this->options[self::CELLS_PADDING][0]; ++$paddingLine) {
+                \array_unshift($this->data[$rowPosition][$columnName], '');
+            }
+        }
+
+        if (0 < $this->options[self::CELLS_PADDING][2]) {
+            // And the bottom padding
+            for ($paddingLine = 0; $paddingLine < $this->options[self::CELLS_PADDING][2]; ++$paddingLine) {
+                $this->data[$rowPosition][$columnName][] = '';
             }
         }
     }
