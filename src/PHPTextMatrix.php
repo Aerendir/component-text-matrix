@@ -3,12 +3,12 @@
 /*
  * This file is part of the PHP Text Matrix Component.
  *
- * Copyright Adamo Aerendir Crespi 2016-2017.
+ * Copyright Adamo Aerendir Crespi 2016-2020.
  *
  * See the LICENSE for more details.
  *
  * @author    Adamo Aerendir Crespi <hello@aerendir.me>
- * @copyright Copyright (C) 2012 - 2017 Aerendir. All rights reserved.
+ * @copyright Copyright (C) 2012 - 2020 Aerendir. All rights reserved.
  * @license   MIT License
  */
 
@@ -28,6 +28,63 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class PHPTextMatrix
 {
+    /** @var string */
+    public const ALIGN = 'align';
+
+    /** @var string */
+    public const ALIGN_LEFT = 'left';
+
+    /** @var string */
+    public const ALIGN_RIGHT = 'right';
+
+    /** @var string */
+    public const CELLS_PADDING = 'cells_padding';
+
+    /** @var string */
+    public const COLUMNS = 'columns';
+
+    /** @var string */
+    public const CUT = 'cut';
+
+    /** @var string */
+    public const HAS_HEADER = 'has_header';
+
+    /** @var string */
+    public const MAX_WIDTH = 'max_width';
+
+    /** @var string */
+    public const MIN_WIDTH = 'min_width';
+
+    /** @var string */
+    public const SHOW_HEAD_TOP_SEP = 'show_head_top_sep';
+
+    /** @var string The horizontal header separator */
+    public const SEP_HEAD_H = 'sep_head_h';
+
+    /** @var string The vertical header separator */
+    public const SEP_HEAD_V = 'sep_head_v';
+
+    /** @var string The cross header separator */
+    public const SEP_HEAD_X = 'sep_head_x';
+
+    /** @var string The horizontal separator */
+    public const SEP_H = 'sep_h';
+
+    /** @var string The vertical separator */
+    public const SEP_V = 'sep_v';
+
+    /** @var string The cross separator */
+    public const SEP_X = 'sep_x';
+
+    /** @var string */
+    private const SEP_ = 'sep_';
+
+    /* @var string */
+    private const STRING = 'string';
+
+    /** @var string */
+    private const INTEGER = 'integer';
+
     /** @var array $data The data to render in the table */
     private $data;
 
@@ -49,55 +106,8 @@ final class PHPTextMatrix
     /** @var array $options The options to render the table */
     private $options;
 
-    /** @var string $table The rendered table in the plain text format */
-    private $table;
-
     /** @var int $tableWidth The total width of the table */
     private $tableWidth;
-    /**
-     * @var string
-     */
-    private const HAS_HEADER = 'has_header';
-    /**
-     * @var string
-     */
-    private const COLUMNS = 'columns';
-    /**
-     * @var string
-     */
-    private const MAX_WIDTH = 'max_width';
-    /**
-     * @var string
-     */
-    private const CUT = 'cut';
-    /**
-     * @var string
-     */
-    private const CELLS_PADDING = 'cells_padding';
-    /**
-     * @var string
-     */
-    private const MIN_WIDTH = 'min_width';
-    /**
-     * @var string
-     */
-    private const SEP_ = 'sep_';
-    /**
-     * @var string
-     */
-    private const ALIGN = 'align';
-    /**
-     * @var string
-     */
-    private const LEFT = 'left';
-    /**
-     * @var string
-     */
-    private const STRING = 'string';
-    /**
-     * @var string
-     */
-    private const INTEGER = 'integer';
 
     /**
      * @param array $data
@@ -138,7 +148,7 @@ final class PHPTextMatrix
         $table = $this->options[self::HAS_HEADER] ? $this->drawHeaderDivider() : $this->drawDivider();
 
         // If the top divider of the header hasn't to be shown...
-        if ($this->options[self::HAS_HEADER] && false === $this->options['show_head_top_sep']) {
+        if ($this->options[self::HAS_HEADER] && false === $this->options[self::SHOW_HEAD_TOP_SEP]) {
             // ... Remove it
             $table = '';
         }
@@ -148,12 +158,10 @@ final class PHPTextMatrix
             $table .= $this->options[self::HAS_HEADER] && 0 === $rowPosition ? $this->drawHeaderDivider() : $this->drawDivider();
         }
 
-        $this->table = $table;
-
         // Reset options
         $this->options = [];
 
-        return $this->table;
+        return $table;
     }
 
     /**
@@ -272,8 +280,6 @@ final class PHPTextMatrix
      * @see http://stackoverflow.com/a/2326133/1399706
      *
      * @param string $cellContent
-     *
-     * @return string
      */
     private function reduceSpaces(string $cellContent): string
     {
@@ -348,7 +354,7 @@ final class PHPTextMatrix
         }
 
         // Add 1 for the first separator
-        $tableWidth++;
+        ++$tableWidth;
 
         // Add the left and right padding * number of columns
         $tableWidth += ($this->options[self::CELLS_PADDING][1] + $this->options[self::CELLS_PADDING][3]) * \count($this->columnsWidths);
@@ -424,7 +430,7 @@ final class PHPTextMatrix
             }
 
             switch ($this->options[self::COLUMNS][$columnName][self::ALIGN]) {
-                case self::LEFT:
+                case self::ALIGN_LEFT:
                     $line .=
                         // + content
                         \trim($lineContent)
@@ -506,31 +512,31 @@ final class PHPTextMatrix
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
             // The horizontal header separator
-            'sep_head_h' => '=',
+            self::SEP_HEAD_H => '=',
             // The vertical header separator
-            'sep_head_v' => '#',
+            self::SEP_HEAD_V => '#',
             // The cross header separator
-            'sep_head_x' => '#',
+            self::SEP_HEAD_X => '#',
             // The horizontal separator
-            'sep_h' => '-',
+            self::SEP_H => '-',
             // The vertical separator
-            'sep_v' => '|',
+            self::SEP_V => '|',
             // The cross separator
-            'sep_x'      => '+',
+            self::SEP_X      => '+',
             self::HAS_HEADER => false,
             // Determines if the top divider of the header has to be shown or not
-            'show_head_top_sep' => true,
+            self::SHOW_HEAD_TOP_SEP => true,
             // Determine if the content has to be aligned on the left or on the right
-            'default_cell_align' => self::LEFT,
+            'default_cell_align' => self::ALIGN_LEFT,
             ])
             // This options can be passed or not
                 ->setDefined(self::CELLS_PADDING)
                 ->setDefined(self::COLUMNS);
 
         // Set type validation
-        $resolver->setAllowedTypes('sep_h', self::STRING)
-            ->setAllowedTypes('sep_v', self::STRING)
-            ->setAllowedTypes('sep_x', self::STRING)
+        $resolver->setAllowedTypes(self::SEP_H, self::STRING)
+            ->setAllowedTypes(self::SEP_V, self::STRING)
+            ->setAllowedTypes(self::SEP_X, self::STRING)
             ->setAllowedTypes(self::CELLS_PADDING, ['array', self::INTEGER])
             ->setAllowedTypes(self::COLUMNS, 'array');
 
@@ -629,12 +635,12 @@ final class PHPTextMatrix
             $resolver->setDefined(self::MAX_WIDTH);
             $resolver->setDefined(self::MIN_WIDTH);
             $resolver->setDefault(self::CUT, false);
-            $resolver->setDefault(self::ALIGN, self::LEFT);
+            $resolver->setDefault(self::ALIGN, self::ALIGN_LEFT);
 
             $resolver->setAllowedTypes(self::MAX_WIDTH, self::INTEGER);
             $resolver->setAllowedTypes(self::MIN_WIDTH, self::INTEGER);
             $resolver->setAllowedValues(self::CUT, [true, false]);
-            $resolver->setAllowedValues(self::ALIGN, [self::LEFT, 'right']);
+            $resolver->setAllowedValues(self::ALIGN, [self::ALIGN_LEFT, 'right']);
 
             foreach ($this->options[self::COLUMNS] as $columnName => $columnOptions) {
                 $resolved            = $resolver->resolve($columnOptions);
