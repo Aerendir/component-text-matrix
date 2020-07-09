@@ -21,7 +21,7 @@ $config = [
     ],
 
     // A directory list that defines files that will be excluded
-    // from static analysis, but whose class and method
+    // exclude_file_list.from static analysis, but whose class and method
     // information should be included.
     //
     // Generally, you'll want to include the directories for
@@ -33,6 +33,10 @@ $config = [
     //       and `exclude_analysis_directory_list` arrays.
     'exclude_analysis_directory_list' => [
         'vendor/', 'build/', 'docs/'
+    ],
+    'exclude_file_list' => [
+        // This is required as with --prefer-lowest, Phan fails
+        'vendor/psalm/plugin-phpunit/stubs/TestCase.php',
     ],
 
     'quick_mode' => false,
