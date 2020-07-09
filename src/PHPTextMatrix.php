@@ -89,7 +89,7 @@ final class PHPTextMatrix
     private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
-    private $data;
+    private $data = [];
 
     /** @var array $errors Contains the errors found by the validate() method */
     private $errors = [];
@@ -288,7 +288,7 @@ final class PHPTextMatrix
     {
         $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
 
-        if (is_array($result)) {
+        if (\is_array($result)) {
             $result = $result[0];
         }
 
