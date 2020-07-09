@@ -297,6 +297,8 @@ final class PHPTextMatrix
 
     /**
      * Calculates the width of each column of the table.
+     *
+     * @suppress PhanTypeNoPropertiesForeach
      */
     private function calculateSizes(): void
     {
@@ -324,7 +326,7 @@ final class PHPTextMatrix
                 }
 
                 // ... and calculate the length of each line to get the max length of the column
-                foreach ($cellContent as $lineNumber => $lineContent) {
+                foreach ($cellContent as $lineContent) {
                     // Get the length of the cell
                     $contentLength = \iconv_strlen($lineContent);
 
