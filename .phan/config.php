@@ -52,6 +52,8 @@ $config = [
         'PhanUnanalyzable',
         'PhanUnreferencedClass',
         'PhanUnreferencedPublicMethod',
+        'PhanTypeInvalidDimOffset',
+        'PhanTypeMismatchArgumentInternal',
         // This has to be reactivated on PHP 8 (https://stackoverflow.com/a/61802240/1399706)
         'PhanUnusedVariableCaughtException',
     ],

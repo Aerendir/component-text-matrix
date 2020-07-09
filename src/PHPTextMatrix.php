@@ -157,7 +157,7 @@ final class PHPTextMatrix
         }
 
         /**
-         * @var int $rowPosition
+         * @var int   $rowPosition
          * @var array $rowContent
          */
         foreach ($this->data as $rowPosition => $rowContent) {
@@ -245,7 +245,7 @@ final class PHPTextMatrix
     {
         // For each row...
         /**
-         * @var int $rowPosition
+         * @var int   $rowPosition
          * @var array $rowContent
          */
         foreach ($this->data as $rowPosition => $rowContent) {
@@ -283,7 +283,7 @@ final class PHPTextMatrix
         }
     }
 
-    private function addVerticalPadding(int $rowPosition, string $columnName):void
+    private function addVerticalPadding(int $rowPosition, string $columnName): void
     {
         if (0 < $this->options[self::CELLS_PADDING][0]) {
             // Now add the top padding
@@ -326,14 +326,14 @@ final class PHPTextMatrix
     {
         // For each row...
         /**
-         * @var int $rowPosition
+         * @var int   $rowPosition
          * @var array $rowContent
          */
         foreach ($this->data as $rowPosition => $rowContent) {
             // ... cycle each column to get its content ...
             /**
              * @var string $columnName
-             * @var array $cellContent
+             * @var array  $cellContent
              */
             foreach ($rowContent as $columnName => $cellContent) {
                 // If we don't already know the height of this row...
@@ -455,7 +455,7 @@ final class PHPTextMatrix
         $line = '';
         /**
          * @var string $columnName
-         * @var array $cellContent
+         * @var array  $cellContent
          */
         foreach ($rowContent as $columnName => $cellContent) {
             /** @var string $lineContent */
@@ -464,7 +464,8 @@ final class PHPTextMatrix
 
             // Count characters and draw spaces if needed
             $lineContentLength = \iconv_strlen($lineContent);
-            if (false === is_int($lineContentLength)) {
+            /** @phpstan-ignore-next-line */
+            if (false === \is_int($lineContentLength)) {
                 throw new \RuntimeException('Something went wrong counting the length of the content.');
             }
             if ($lineContentLength < $this->columnsWidths[$columnName]) {
@@ -701,7 +702,7 @@ final class PHPTextMatrix
 
             /**
              * @var string $columnName
-             * @var array $columnOptions
+             * @var array  $columnOptions
              */
             foreach ($this->options[self::COLUMNS] as $columnName => $columnOptions) {
                 $resolved            = $resolver->resolve($columnOptions);
