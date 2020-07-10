@@ -2,6 +2,7 @@
 <phpunit
     cacheResultFile="var/cache/"
     colors="true"
+    bootstrap="vendor/autoload.php"
 >
     <php>
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0"/>
