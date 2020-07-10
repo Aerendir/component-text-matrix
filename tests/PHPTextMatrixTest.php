@@ -3,16 +3,16 @@
 /*
  * This file is part of the PHP Text Matrix Component.
  *
- * Copyright Adamo Aerendir Crespi 2016-2017.
+ * Copyright Adamo Aerendir Crespi 2016-2020.
  *
  * See the LICENSE for more details.
  *
  * @author    Adamo Aerendir Crespi <hello@aerendir.me>
- * @copyright Copyright (C) 2012 - 2017 Aerendir. All rights reserved.
+ * @copyright Copyright (C) 2012 - 2020 Aerendir. All rights reserved.
  * @license   MIT License
  */
 
-namespace SerendipityHQ\Component\PHPTextMatrixTest;
+namespace SerendipityHQ\Component\PHPTextMatrix\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 /**
  * @author Adamo "Aerendir" Crespi <hello@aerendir.me>
  */
-class PHPTextMatrixTest extends TestCase
+final class PHPTextMatrixTest extends TestCase
 {
     /** @var array */
     private $data;
@@ -29,7 +29,7 @@ class PHPTextMatrixTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->data = [
             [
@@ -50,7 +50,7 @@ class PHPTextMatrixTest extends TestCase
         ];
     }
 
-    public function testTextMatrix()
+    public function testTextMatrix(): void
     {
         $expected = <<<'EOF'
 +--+--+--+
@@ -70,7 +70,7 @@ EOF;
         $this::assertEquals(10, $textMatrix->getTableWidth());
     }
 
-    public function testValidationInterceptsMismatchingColumns()
+    public function testValidationInterceptsMismatchingColumns(): void
     {
         // Remove a column from a row
         unset($this->data[1]['b']);
@@ -82,11 +82,11 @@ EOF;
 
         $errors = $textMatrix->getErrors();
 
-        $this::assertSame(1, count($errors));
-        $this::assertContains('The number of columns mismatches', $errors[0]);
+        $this::assertCount(1, $errors);
+        $this::assertStringContainsString('The number of columns mismatches', $errors[0]);
     }
 
-    public function testValidationInterceptsEmptyMatrix()
+    public function testValidationInterceptsEmptyMatrix(): void
     {
         // Remove a column from a row
         $this->data = [];
@@ -98,11 +98,11 @@ EOF;
 
         $errors = $textMatrix->getErrors();
 
-        $this::assertSame(1, count($errors));
-        $this::assertContains('There are no rows in the table', $errors[0]);
+        $this::assertCount(1, $errors);
+        $this::assertStringContainsString('There are no rows in the table', $errors[0]);
     }
 
-    public function testHeaderDrawing()
+    public function testHeaderDrawing(): void
     {
         $header = [
             'a' => 'Column A',
@@ -111,10 +111,10 @@ EOF;
         ];
 
         $options = [
-            'has_header' => true,
+            PHPTextMatrix::HAS_HEADER => true,
         ];
 
-        array_unshift($this->data, $header);
+        \array_unshift($this->data, $header);
 
         $expected = <<<'EOF'
 #========#========#========#
@@ -136,7 +136,7 @@ EOF;
         $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
-    public function testHeaderDrawingCanRemoveHeaderTopSeparator()
+    public function testHeaderDrawingCanRemoveHeaderTopSeparator(): void
     {
         $header = [
             'a' => 'Column A',
@@ -144,11 +144,11 @@ EOF;
             'c' => 'Column C',
         ];
 
-        array_unshift($this->data, $header);
+        \array_unshift($this->data, $header);
 
         $options = [
-            'has_header'        => true,
-            'show_head_top_sep' => false,
+            PHPTextMatrix::HAS_HEADER        => true,
+            PHPTextMatrix::SHOW_HEAD_TOP_SEP => false,
         ];
 
         $expected = <<<'EOF'
@@ -170,10 +170,10 @@ EOF;
         $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAsInteger()
+    public function testPaddingAsInteger(): void
     {
         $options = [
-            'cells_padding' => 1,
+            PHPTextMatrix::CELLS_PADDING => 1,
         ];
 
         $expected = <<<'EOF'
@@ -200,10 +200,10 @@ EOF;
         $this::assertEquals(16, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAsArrayWithOneSetting()
+    public function testPaddingAsArrayWithOneSetting(): void
     {
         $options = [
-            'cells_padding' => [1],
+            PHPTextMatrix::CELLS_PADDING => [1],
         ];
 
         $expected = <<<'EOF'
@@ -230,10 +230,10 @@ EOF;
         $this::assertEquals(16, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAsArrayWithTwoSettings()
+    public function testPaddingAsArrayWithTwoSettings(): void
     {
         $options = [
-            'cells_padding' => [1, 2],
+            PHPTextMatrix::CELLS_PADDING => [1, 2],
         ];
 
         $expected = <<<'EOF'
@@ -260,10 +260,10 @@ EOF;
         $this::assertEquals(22, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAsArrayWithThreeSettings()
+    public function testPaddingAsArrayWithThreeSettings(): void
     {
         $options = [
-            'cells_padding' => [1, 2, 3],
+            PHPTextMatrix::CELLS_PADDING => [1, 2, 3],
         ];
 
         $expected = <<<'EOF'
@@ -296,10 +296,10 @@ EOF;
         $this::assertEquals(22, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAsArrayWithFourSettings()
+    public function testPaddingAsArrayWithFourSettings(): void
     {
         $options = [
-            'cells_padding' => [1, 2, 3, 4],
+            PHPTextMatrix::CELLS_PADDING => [1, 2, 3, 4],
         ];
 
         $expected = <<<'EOF'
@@ -332,19 +332,19 @@ EOF;
         $this::assertEquals(28, $textMatrix->getTableWidth());
     }
 
-    public function testPaddingAcceptsMaxFourOptions()
+    public function testPaddingAcceptsMaxFourOptions(): void
     {
         $options = [
-            'cells_padding' => [1, 2, 3, 4, 5],
+            PHPTextMatrix::CELLS_PADDING => [1, 2, 3, 4, 5],
         ];
 
         $textMatrix = new PHPTextMatrix($this->data);
 
-        $this::expectException(InvalidOptionsException::class);
+        $this->expectException(InvalidOptionsException::class);
         $textMatrix->render($options);
     }
 
-    public function testColumnMaxWidth()
+    public function testColumnMaxWidth(): void
     {
         $data = [
             [
@@ -365,9 +365,9 @@ EOF;
         ];
 
         $options = [
-            'columns' => [
+            PHPTextMatrix::COLUMNS => [
                 'b' => [
-                    'max_width' => 11,
+                    PHPTextMatrix::MAX_WIDTH => 11,
                 ],
             ],
         ];
@@ -393,7 +393,7 @@ EOF;
         $this::assertEquals(19, $textMatrix->getTableWidth());
     }
 
-    public function testCutDefaultsToFalse()
+    public function testCutDefaultsToFalse(): void
     {
         $data = [
             [
@@ -414,10 +414,10 @@ EOF;
         ];
 
         $options = [
-            'columns' => [
+            PHPTextMatrix::COLUMNS => [
                 'b' => [
                     // This is shorter than "longer" that is 6 characters long
-                    'max_width' => 5,
+                    PHPTextMatrix::MAX_WIDTH => 5,
                 ],
             ],
         ];
@@ -446,7 +446,7 @@ EOF;
         $this::assertEquals(14, $textMatrix->getTableWidth());
     }
 
-    public function testCutToTrue()
+    public function testCutToTrue(): void
     {
         $data = [
             [
@@ -467,11 +467,11 @@ EOF;
         ];
 
         $options = [
-            'columns' => [
+            PHPTextMatrix::COLUMNS => [
                 'b' => [
                     // This is shorter than "longer" that is 6 characters long
-                    'max_width' => 5,
-                    'cut'       => true,
+                    PHPTextMatrix::MAX_WIDTH => 5,
+                    PHPTextMatrix::CUT       => true,
                 ],
             ],
         ];
@@ -503,7 +503,7 @@ EOF;
         $this::assertEquals(13, $textMatrix->getTableWidth());
     }
 
-    public function testAlignRight()
+    public function testAlignRight(): void
     {
         $data = [
             [
@@ -524,10 +524,10 @@ EOF;
         ];
 
         $options = [
-            'columns' => [
+            PHPTextMatrix::COLUMNS => [
                 'b' => [
-                    'max_width' => 5,
-                    'align'     => 'right',
+                    PHPTextMatrix::MAX_WIDTH => 5,
+                    PHPTextMatrix::ALIGN     => PHPTextMatrix::ALIGN_RIGHT,
                 ],
             ],
         ];
@@ -556,7 +556,7 @@ EOF;
         $this::assertEquals(14, $textMatrix->getTableWidth());
     }
 
-    public function testCustomSeparatorsAndMinWidth()
+    public function testCustomSeparatorsAndMinWidth(): void
     {
         $data = [
             [
@@ -577,38 +577,29 @@ EOF;
         ];
 
         $options = [
-            'has_header'        => true,
-            'cells_padding'     => [0, 3],
-            'sep_head_v'        => ' ',
-            'sep_head_x'        => ' ',
-            'sep_head_h'        => '-',
-            'sep_v'             => ' ',
-            'sep_x'             => ' ',
-            'sep_h'             => ' ',
-            'show_head_top_sep' => false,
-            'columns'           => [
+            PHPTextMatrix::HAS_HEADER              => true,
+            PHPTextMatrix::CELLS_PADDING           => [0, 3],
+            PHPTextMatrix::SEP_HEAD_V              => ' ',
+            PHPTextMatrix::SEP_HEAD_X              => ' ',
+            PHPTextMatrix::SEP_HEAD_H              => '-',
+            PHPTextMatrix::SEP_V                   => ' ',
+            PHPTextMatrix::SEP_X                   => ' ',
+            PHPTextMatrix::SEP_H                   => ' ',
+            PHPTextMatrix::SHOW_HEAD_TOP_SEP       => false,
+            PHPTextMatrix::COLUMNS                 => [
                 'description' => [
-                    'max_width' => 40,
+                    PHPTextMatrix::MAX_WIDTH => 40,
                     // Equal to CSS word-break: break-all
-                    'cut' => true,
+                    PHPTextMatrix::CUT => true,
                 ],
                 'price' => [
-                    'align'     => 'right',
-                    'min_width' => 15,
+                    PHPTextMatrix::ALIGN     => PHPTextMatrix::ALIGN_RIGHT,
+                    PHPTextMatrix::MIN_WIDTH => 15,
                 ],
             ],
         ];
 
-        $expected = <<<'EOF'
-    Quantity       Description                                      Price    
- -------------- -------------------------------------- --------------------- 
-    1 month        TrustBack.Me: Base plan                         $29.00    
-                   From Sep 26 2016 to Oct 26 2016.                          
-                                                                             
-                   Credit applied                                 -$29.00    
-                                                                             
-
-EOF;
+        $expected = \Safe\file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
 
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);

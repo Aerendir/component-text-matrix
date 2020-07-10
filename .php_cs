@@ -12,18 +12,19 @@ $finder = PhpCsFixer\Finder::create()
 $header = <<<EOF
 This file is part of the PHP Text Matrix Component.
 
-Copyright Adamo Aerendir Crespi 2016-2017.
+Copyright Adamo Aerendir Crespi 2016-2020.
 
 See the LICENSE for more details.
 
 @author    Adamo Aerendir Crespi <hello@aerendir.me>
-@copyright Copyright (C) 2012 - 2017 Aerendir. All rights reserved.
+@copyright Copyright (C) 2012 - 2020 Aerendir. All rights reserved.
 @license   MIT License
 EOF;
 
 return PhpCsFixer\Config::create()
     ->setFinder($finder)
     ->setUsingCache(true)
+    ->setCacheFile(__DIR__.'/var/cache/.php_cs.cache')
     ->setRiskyAllowed(true)
     ->setRules([
         'header_comment' => ['header' => $header],
@@ -52,6 +53,7 @@ return PhpCsFixer\Config::create()
         'no_useless_return' => true,
         'not_operator_with_space' => true,
         'not_operator_with_successor_space' => true,
+        'no_superfluous_phpdoc_tags' => false,
         'ordered_class_elements' => [
             'use_trait',
             'constant_public',
@@ -72,6 +74,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
         'phpdoc_types_order' => ['null_adjustment' => 'always_last'],
+        'phpdoc_var_without_name' => false,
         'single_line_comment_style' => ['comment_types' => ['hash']],
         'strict_comparison' => true
     ]);

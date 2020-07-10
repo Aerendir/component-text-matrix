@@ -1,18 +1,42 @@
-[![Latest Stable Version](https://poser.pugx.org/serendipity_hq/php_text_matrix/v/stable.png)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![Build Status](https://travis-ci.org/Aerendir/PHPTextMatrix.svg?branch=master)](https://travis-ci.org/Aerendir/PHPTextMatrix)
-[![Total Downloads](https://poser.pugx.org/serendipity_hq/php_text_matrix/downloads.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![License](https://poser.pugx.org/serendipity_hq/php_text_matrix/license.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![Code Climate](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/gpa.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
-[![Test Coverage](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/coverage.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
-[![Issue Count](https://codeclimate.com/github/Aerendir/PHPTextMatrix/badges/issue_count.svg)](https://codeclimate.com/github/Aerendir/PHPTextMatrix)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/54b8a799-e95e-4773-b209-c96862d34476/mini.png)](https://insight.sensiolabs.com/projects/54b8a799-e95e-4773-b209-c96862d34476)
-[![Dependency Status](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57e6a26dbd6fa600316f6bf1)
+<p align="center">
+    <a href="http://www.serendipityhq.com" target="_blank">
+        <img style="max-width: 350px" src="http://www.serendipityhq.com/assets/open-source-projects/Logo-SerendipityHQ-Icon-Text-Purple.png">
+    </a>
+</p>
 
-# PHPTextMatrix
+<h1 align="center">Serendipity HQ Text Matrix</h1>
+<p align="center">Renders into a plain text table an array representing a matrix of data.</p>
+<p align="center">
+    <a href="https://github.com/Aerendir/component-text-matrix/releases"><img src="https://img.shields.io/packagist/v/serendipity_hq/component-text-matrix.svg?style=flat-square"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
+    <a href="https://github.com/Aerendir/component-text-matrix/releases"><img src="https://img.shields.io/packagist/php-v/serendipity_hq/component-text-matrix?color=%238892BF&style=flat-square&logo=php" /></a>
+    <a title="Tested with Symfony ^3.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^3.4" src="https://img.shields.io/badge/Symfony-%5E3.4-333?style=flat-square&logo=symfony" /></a>
+    <a title="Tested with Symfony ^4.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^4.4" src="https://img.shields.io/badge/Symfony-%5E4.4-333?style=flat-square&logo=symfony" /></a>
+    <a title="Tested with Symfony ^5.0" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^5.0" src="https://img.shields.io/badge/Symfony-%5E5.0-333?style=flat-square&logo=symfony" /></a>
+</p>
+<p align="center">
+    <a href="https://www.php.net/manual/en/book.iconv.php"><img src="https://img.shields.io/badge/Requires-ext--iconv-%238892BF?style=flat-square&logo=php"></a>
+</p>
 
-PHPTextMatrix renders into a plain text table an array representing a matrix of data.
+## Current Status
 
-Features:
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=coverage)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=alert_status)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=security_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
+
+![Phan](https://github.com/Aerendir/component-text-matrix/workflows/Phan/badge.svg)
+![PHPStan](https://github.com/Aerendir/component-text-matrix/workflows/PHPStan/badge.svg)
+![PSalm](https://github.com/Aerendir/component-text-matrix/workflows/PSalm/badge.svg)
+![PHPUnit](https://github.com/Aerendir/component-text-matrix/workflows/PHPunit/badge.svg)
+![Composer](https://github.com/Aerendir/component-text-matrix/workflows/Composer/badge.svg)
+![PHP CS Fixer](https://github.com/Aerendir/component-text-matrix/workflows/PHP%20CS%20Fixer/badge.svg)
+![Rector](https://github.com/Aerendir/component-text-matrix/workflows/Rector/badge.svg)
+
+## Features
 
 - Four direction padding (top, right, bottom and left) on a per column basis (following the CSS syntax);
 - Max columns width, with possibility to cut words or to maintain their integrity (as the word-wrap CSS property);
@@ -21,33 +45,22 @@ Features:
 - Different default style for the header (the first row passed);
 - Ability to remove the first line divider for the header;
 
-## Install PHPTextMatrix via Composer
+## Install Serendipity HQ Text Matrix via Composer
 
-    $ composer require serendipity_hq/php_text_matrix
-
-or, in your composer.json
-
-    "require": {
-      "serendipity_hq/php_text_matrix": "~1"
-    }
-  
+    $ composer require serendipity_hq/component-text-matrix
 
 This library follows the http://semver.org/ versioning conventions.
 
-### Requirements
+## How to use Serendipity HQ Text Matrix
 
-- PHP: >= 5.6
-
-## How to use PHPTextMatrix
-
-PHPTextMatrix allows a great flexibility in rendering data as plain text tables.
+component-text-matrix allows a great flexibility in rendering data as plain text tables.
 You can customize a lot of aspctes of your generated table.
 
 If some feature is missed, you can open an issue and integrate it and submit a pull request. Remeber to test you new feature: not tested features will not be merged.
 
 ### Basic usage
 
-To use PHPTextMatrix you need only an array representing a matrix:
+To use component-text-matrix you need only an array representing a matrix:
 
 ```
 // The array containing the data
@@ -69,7 +82,7 @@ $data = [
     ]
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render();
@@ -107,7 +120,7 @@ $options = [
     'cells_padding' => 5
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render($options);
@@ -250,7 +263,7 @@ $options = [
     ]
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render($options);
@@ -260,13 +273,13 @@ echo '</pre>';
 This is the generated table:
 
 ```
-    Quantity       Description                                      Price    
- -------------- -------------------------------------- --------------------- 
-    1 month        TrustBack.Me: Base plan                         $29.00    
-                   From Sep 26 2016 to Oct 26 2016.                          
-                                                                             
-                   Credit applied                                 -$29.00    
-                                                                             
+    Quantity       Description                                      Price
+ -------------- -------------------------------------- ---------------------
+    1 month        TrustBack.Me: Base plan                         $29.00
+                   From Sep 26 2016 to Oct 26 2016.
+
+                   Credit applied                                 -$29.00
+
 ```
 
 ### Final notes
@@ -291,6 +304,6 @@ If the padding property has **two** values:
 If the padding property has **one** value:
     * padding: 25px;
         * all four paddings are 25px
-If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`). 
+If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`).
 
 For more information, see the unit tests in the `tests` folder, the methods `resolveOptions()` (where all options are validated) or the examples.

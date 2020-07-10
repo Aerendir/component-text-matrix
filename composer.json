@@ -1,10 +1,10 @@
 {
-    "name": "serendipity_hq/php_text_matrix",
+    "name": "serendipity_hq/component-text-matrix",
     "description": "A PHP library to render an array representing a matrix as a plain text table.",
     "type": "library",
     "license": "MIT",
     "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
-    "homepage": "https://github.com/Aerendir/PHPTextMatrix",
+    "homepage": "https://github.com/Aerendir/component-text-matrix",
     "authors": [
         {
             "name": "Adamo Aerendir Crespi",
@@ -12,19 +12,37 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "symfony/options-resolver": "^2.8||^3.0||^4.0"
+        "php": "^7.2",
+        "ext-iconv":  "*",
+        "symfony/options-resolver": "^3.0|^4.0|5.0",
+        "thecodingmachine/safe": "^0.1|^1.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "dev-master",
-        "friendsofphp/php-cs-fixer": "^2",
-        "phpunit/phpunit": "^6||^7",
-        "symfony/var-dumper": "^2.8||^3.0||^4.0"
+        "drenso/phan-extensions": "@stable",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "muglug/package-versions-56": "^1.2.4",
+        "phan/phan": "^3.0",
+        "phpstan/phpstan": "^0.12.32",
+        "phpstan/phpstan-phpunit": "^0.12.11",
+        "phpunit/phpunit": "^8.5.8",
+        "psalm/plugin-phpunit": "@stable",
+        "rector/rector": "^0.7",
+        "roave/security-advisories": "dev-master",
+        "symfony/var-dumper": "^3.0||^4.0|5.0",
+        "thecodingmachine/phpstan-safe-rule": "@stable",
+        "vimeo/psalm": "^3.12"
     },
     "autoload": {
         "psr-4": {
-            "SerendipityHQ\\Component\\PHPTextMatrix\\": "src",
+            "SerendipityHQ\\Component\\PHPTextMatrix\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\": "tests"
         }
+    },
+    "config":{
+        "sort-packages": true
     }
 }
