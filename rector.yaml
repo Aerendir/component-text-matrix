@@ -1,5 +1,7 @@
 parameters:
     php_version_features: '7.2'
+    autoload_paths:
+        - 'vendor-bin/phpunit/vendor/autoload.php'
     sets:
         # architecture
         - 'action-injection-to-constructor-injection'
