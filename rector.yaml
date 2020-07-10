@@ -54,3 +54,5 @@ parameters:
         - 'Rector\SOLID\Rector\Property\AddFalseDefaultToBoolPropertyRector'
         - 'Rector\TypeDeclaration\Rector\ClassMethod\AddArrayParamDocTypeRector'
         - 'Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector'
+        # Incompatible with static analyses
+        - 'Rector\PHPStan\Rector\Cast\RecastingRemovalRector'
