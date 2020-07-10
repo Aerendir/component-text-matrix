@@ -1,10 +1,10 @@
 {
-    "name": "serendipity_hq/php_text_matrix",
+    "name": "serendipity_hq/component-text-matrix",
     "description": "A PHP library to render an array representing a matrix as a plain text table.",
     "type": "library",
     "license": "MIT",
     "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
-    "homepage": "https://github.com/Aerendir/PHPTextMatrix",
+    "homepage": "https://github.com/Aerendir/component-text-matrix",
     "authors": [
         {
             "name": "Adamo Aerendir Crespi",

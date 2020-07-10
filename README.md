@@ -1,22 +1,24 @@
 <p align="center">
     <a href="http://www.serendipityhq.com" target="_blank">
-        <img src="http://www.serendipityhq.com/assets/open-source-projects/Logo-SerendipityHQ-Icon-Text-Purple.png">
+        <img style="max-width: 350px" src="http://www.serendipityhq.com/assets/open-source-projects/Logo-SerendipityHQ-Icon-Text-Purple.png">
     </a>
 </p>
 
-PHP TEXT MATRIX
-===============
+<h1 align="center">Serendipity HQ Text Matrix</h1>
+<p align="center">Renders into a plain text table an array representing a matrix of data.</p>
+<p align="center">
+    <a href="https://github.com/Aerendir/component-text-matrix/releases"><img src="https://img.shields.io/packagist/v/serendipity_hq/component-text-matrix.svg?style=flat-square"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
+    <a href="https://github.com/Aerendir/component-text-matrix/releases"><img src="https://img.shields.io/packagist/php-v/serendipity_hq/component-text-matrix?color=%238892BF&style=flat-square&logo=php" /></a>
+    <a title="Tested with Symfony ^3.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^3.4" src="https://img.shields.io/badge/Symfony-%5E3.4-333?style=flat-square&logo=symfony" /></a>
+    <a title="Tested with Symfony ^4.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^4.4" src="https://img.shields.io/badge/Symfony-%5E4.4-333?style=flat-square&logo=symfony" /></a>
+    <a title="Tested with Symfony ^5.0" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^5.0" src="https://img.shields.io/badge/Symfony-%5E5.0-333?style=flat-square&logo=symfony" /></a>
+</p>
+<p align="center">
+    <a href="https://www.php.net/manual/en/book.iconv.php"><img src="https://img.shields.io/badge/Requires-ext--iconv-%238892BF?style=flat-square&logo=php"></a>
+</p>
 
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/serendipity_hq/php_text_matrix?color=%238892BF)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![Tested with Symfony ^3.0](https://img.shields.io/badge/Symfony-%5E3.0-333)](https://github.com/Aerendir/PHPTextMatrix/actions)
-[![Tested with Symfony ^4.0](https://img.shields.io/badge/Symfony-%5E4.0-333)](https://github.com/Aerendir/PHPTextMatrix/actions)
-[![Tested with Symfony ^5.0](https://img.shields.io/badge/Symfony-%5E5.0-333)](https://github.com/Aerendir/PHPTextMatrix/actions)
-
-![Requires PHP Intl extension](https://img.shields.io/badge/Requires-ext--iconv-%238892BF)
-
-[![Latest Stable Version](https://poser.pugx.org/serendipity_hq/php_text_matrix/v/stable.png)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![Total Downloads](https://poser.pugx.org/serendipity_hq/php_text_matrix/downloads.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
-[![License](https://poser.pugx.org/serendipity_hq/php_text_matrix/license.svg)](https://packagist.org/packages/serendipity_hq/php_text_matrix)
+## Current Status
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=coverage)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
@@ -26,17 +28,15 @@ PHP TEXT MATRIX
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
 
-![Phan](https://github.com/Aerendir/PHPTextMatrix/workflows/Phan/badge.svg)
-![PHPStan](https://github.com/Aerendir/PHPTextMatrix/workflows/PHPStan/badge.svg)
-![PSalm](https://github.com/Aerendir/PHPTextMatrix/workflows/PSalm/badge.svg)
-![PHPUnit](https://github.com/Aerendir/PHPTextMatrix/workflows/PHPunit/badge.svg)
-![Composer](https://github.com/Aerendir/PHPTextMatrix/workflows/Composer/badge.svg)
-![PHP CS Fixer](https://github.com/Aerendir/PHPTextMatrix/workflows/PHP%20CS%20Fixer/badge.svg)
-![Rector](https://github.com/Aerendir/PHPTextMatrix/workflows/Rector/badge.svg)
+![Phan](https://github.com/Aerendir/component-text-matrix/workflows/Phan/badge.svg)
+![PHPStan](https://github.com/Aerendir/component-text-matrix/workflows/PHPStan/badge.svg)
+![PSalm](https://github.com/Aerendir/component-text-matrix/workflows/PSalm/badge.svg)
+![PHPUnit](https://github.com/Aerendir/component-text-matrix/workflows/PHPunit/badge.svg)
+![Composer](https://github.com/Aerendir/component-text-matrix/workflows/Composer/badge.svg)
+![PHP CS Fixer](https://github.com/Aerendir/component-text-matrix/workflows/PHP%20CS%20Fixer/badge.svg)
+![Rector](https://github.com/Aerendir/component-text-matrix/workflows/Rector/badge.svg)
 
-PHPTextMatrix renders into a plain text table an array representing a matrix of data.
-
-Features:
+## Features
 
 - Four direction padding (top, right, bottom and left) on a per column basis (following the CSS syntax);
 - Max columns width, with possibility to cut words or to maintain their integrity (as the word-wrap CSS property);
@@ -45,33 +45,22 @@ Features:
 - Different default style for the header (the first row passed);
 - Ability to remove the first line divider for the header;
 
-## Install PHPTextMatrix via Composer
+## Install Serendipity HQ Text Matrix via Composer
 
-    $ composer require serendipity_hq/php_text_matrix
-
-or, in your composer.json
-
-    "require": {
-      "serendipity_hq/php_text_matrix": "~1"
-    }
-
+    $ composer require serendipity_hq/component-text-matrix
 
 This library follows the http://semver.org/ versioning conventions.
 
-### Requirements
+## How to use Serendipity HQ Text Matrix
 
-- PHP: >= 5.6
-
-## How to use PHPTextMatrix
-
-PHPTextMatrix allows a great flexibility in rendering data as plain text tables.
+component-text-matrix allows a great flexibility in rendering data as plain text tables.
 You can customize a lot of aspctes of your generated table.
 
 If some feature is missed, you can open an issue and integrate it and submit a pull request. Remeber to test you new feature: not tested features will not be merged.
 
 ### Basic usage
 
-To use PHPTextMatrix you need only an array representing a matrix:
+To use component-text-matrix you need only an array representing a matrix:
 
 ```
 // The array containing the data
@@ -93,7 +82,7 @@ $data = [
     ]
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render();
@@ -131,7 +120,7 @@ $options = [
     'cells_padding' => 5
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render($options);
@@ -274,7 +263,7 @@ $options = [
     ]
 ];
 
-$table = new \SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix($data);
+$table = new \SerendipityHQ\Component\component-text-matrix\component-text-matrix($data);
 
 echo '<pre>';
 echo $table->render($options);
