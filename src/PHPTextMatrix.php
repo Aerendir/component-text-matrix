@@ -309,6 +309,7 @@ final class PHPTextMatrix
     {
         $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
 
+        // @phpstan-ignore-next-line
         if (\is_array($result)) {
             /** @var mixed $result */
             $result = $result[0];
