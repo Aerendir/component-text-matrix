@@ -4,3 +4,4 @@ build
 composer.lock
 var
 !var/cache/.gitkeep
+/vendor-bin/**/vendor
