@@ -20,7 +20,6 @@
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
         "drenso/phan-extensions": "@stable",
-        "friendsofphp/php-cs-fixer": "^2.16",
         "muglug/package-versions-56": "^1.2.4",
         "phan/phan": "^3.0",
         "phpstan/phpstan": "^0.12.32",
