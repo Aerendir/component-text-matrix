@@ -45,6 +45,18 @@
 - Different default style for the header (the first row passed);
 - Ability to remove the first line divider for the header;
 
+<hr />
+<h3 align="center">
+    <b>Do you like this bundle?</b><br />
+    <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
+</h3>
+<p align="center">
+    or run<br />
+    <code>composer global require symfony/thanks && composer thanks</code><br />
+    to say thank you to all libraries you use in your current project, this included!
+</p>
+<hr />
+
 ## Install Serendipity HQ Text Matrix via Composer
 
     $ composer require serendipity_hq/component-text-matrix
@@ -307,3 +319,15 @@ If the padding property has **one** value:
 If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`).
 
 For more information, see the unit tests in the `tests` folder, the methods `resolveOptions()` (where all options are validated) or the examples.
+
+<hr />
+<h3 align="center">
+    <b>Do you like this bundle?</b><br />
+    <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
+</h3>
+<p align="center">
+    or run<br />
+    <code>composer global require symfony/thanks && composer thanks</code><br />
+    to say thank you to all libraries you use in your current project, this included!
+</p>
+<hr />
