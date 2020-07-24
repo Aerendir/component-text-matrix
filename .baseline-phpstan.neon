@@ -1,0 +1,97 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$errors type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$columnsWidths type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$rowsHeights type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$options type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:render\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$rowContent has no value type specified in iterable type array\\.$#"
+			count: 3
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$row has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:getErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$cellContent has no value type specified in iterable type array\\.$#"
+			count: 2
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:drawLine\\(\\) has parameter \\$rowContent with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:drawRow\\(\\) has parameter \\$rowContent with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveOptions\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveCellsPaddings\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$padding has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveColumnsOptions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$columnOptions has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\Tests\\\\PHPTextMatrixTest\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/PHPTextMatrixTest.php
+
