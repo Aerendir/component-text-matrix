@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.12.2@7c7ebd068f8acaba211d4a2c707c4ba90874fa26">
+  <file src="src/PHPTextMatrix.php">
+    <MixedArgument occurrences="4">
+      <code>$this-&gt;data[$rowPosition][$columnName]</code>
+      <code>$this-&gt;options[$prefix . 'h']</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][3]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][1]</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="13">
+      <code>$this-&gt;options[self::COLUMNS][$columnName]</code>
+      <code>$this-&gt;options[self::COLUMNS][$columnName]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][0]</code>
+      <code>$this-&gt;data[$rowPosition][$columnName]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][2]</code>
+      <code>$this-&gt;options[self::COLUMNS][$columnName]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][1]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][3]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][1]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][3]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][3]</code>
+      <code>$this-&gt;options[self::COLUMNS][$columnName]</code>
+      <code>$this-&gt;options[self::CELLS_PADDING][1]</code>
+    </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="4">
+      <code>$this-&gt;data[$rowPosition][$columnName]</code>
+      <code>$this-&gt;data[$rowPosition][$columnName]</code>
+      <code>$this-&gt;data[$rowPosition][$columnName]</code>
+      <code>$this-&gt;options[self::COLUMNS][$columnName]</code>
+    </MixedArrayAssignment>
+  </file>
+  <file src="tests/PHPTextMatrixTest.php">
+    <MixedArgument occurrences="2">
+      <code>$errors[0]</code>
+      <code>$errors[0]</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$this-&gt;data[1]['b']</code>
+    </MixedArrayAccess>
+  </file>
+</files>
