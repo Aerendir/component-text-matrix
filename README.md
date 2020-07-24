@@ -47,7 +47,7 @@
 
 <hr />
 <h3 align="center">
-    <b>Do you like this bundle?</b><br />
+    <b>Do you like this library?</b><br />
     <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
 </h3>
 <p align="center">
@@ -322,7 +322,7 @@ For more information, see the unit tests in the `tests` folder, the methods `res
 
 <hr />
 <h3 align="center">
-    <b>Do you like this bundle?</b><br />
+    <b>Do you like this library?</b><br />
     <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
 </h3>
 <p align="center">
