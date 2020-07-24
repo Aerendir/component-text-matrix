@@ -5,6 +5,9 @@
     "license": "MIT",
     "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
     "homepage": "https://github.com/Aerendir/component-text-matrix",
+    "support": {
+        "issues": "https://github.com/Aerendir/component-text-matrix/issues"
+    },
     "authors": [
         {
             "name": "Adamo Aerendir Crespi",
