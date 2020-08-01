@@ -20,7 +20,14 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
 
     $parameters->set(Option::PHP_VERSION_FEATURES, '7.2');
 
-    $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/tests']);
+    $parameters->set(Option::PATHS, [
+        __DIR__ . '/src',
+        __DIR__ . '/tests'
+    ]);
+
+    $parameters->set(Option::EXCLUDE_PATHS, [
+        __DIR__ . '/tests/bootstrap.php'
+    ]);
 
     $parameters->set(Option::AUTOLOAD_PATHS, [__DIR__ . '/vendor-bin/phpunit/vendor/autoload.php']);
 
@@ -30,8 +37,8 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
             SetList::ARRAY_STR_FUNCTIONS_TO_STATIC_CALL,
             SetList::CODE_QUALITY,
             SetList::CODING_STYLE,
-            // SetList::NAMING,
-            // SetList::ORDER,
+            // SetList::NAMING, // Do not use in this library
+            // SetList::ORDER, // Do not use in this library
             SetList::PERFORMANCE,
             SetList::PHP_52,
             SetList::PHP_53,
@@ -56,20 +63,6 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
             SetList::PHPUNIT_YIELD_DATA_PROVIDER,
             SetList::UNWRAP_COMPAT,
             SetList::SOLID,
-            SetList::SYMFONY_26,
-            SetList::SYMFONY_28,
-            SetList::SYMFONY_30,
-            SetList::SYMFONY_31,
-            SetList::SYMFONY_32,
-            SetList::SYMFONY_33,
-            SetList::SYMFONY_34,
-            SetList::SYMFONY_40,
-            SetList::SYMFONY_41,
-            SetList::SYMFONY_42,
-            SetList::SYMFONY_43,
-            SetList::SYMFONY_44,
-            SetList::SYMFONY_50,
-            SetList::SYMFONY_50_TYPES,
             SetList::SYMFONY_CODE_QUALITY,
             SetList::SYMFONY_PHPUNIT,
             SetList::SAFE_07,
@@ -77,7 +70,7 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
         ]
     );
 
-    $parameters->set(Option::IMPORT_SHORT_CLASSES_PARAMETER, false);
+    $parameters->set(Option::IMPORT_SHORT_CLASSES, false);
 
     $parameters->set(
         Option::EXCLUDE_RECTORS,
@@ -101,6 +94,9 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
             Rector\SOLID\Rector\ClassMethod\UseInterfaceOverImplementationInConstructorRector::class,
             Rector\TypeDeclaration\Rector\ClassMethod\AddArrayParamDocTypeRector::class,
             Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector::class,
+
+            // Not applicable to this lib
+            Rector\PHPStan\Rector\Cast\RecastingRemovalRector::class
         ]
     );
 };
