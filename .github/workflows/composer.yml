@@ -20,19 +20,14 @@ jobs:
               with:
                   php-version: ${{ matrix.php }}
                   coverage: none # disable xdebug, pcov
-                  tools: prestissimo
-                  extensions: intl
+                  tools: prestissimo, symfony
+                  extensions: ast, iconv
 
             - name: Install Composer deps
               run: |
                   composer update --no-interaction --no-suggest
 
-            - name: Install Symfony
-              run: |
-                  wget https://get.symfony.com/cli/installer -O - | bash
-                  sudo mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
-
             - name: Run Composer
               run: |
                   symfony security:check
-                  composer validate --strict
+                  composer validate --strict --no-check-lock
