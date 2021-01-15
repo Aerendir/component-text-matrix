@@ -462,7 +462,6 @@ final class PHPTextMatrix
 
             // Count characters and draw spaces if needed
             $lineContentLength = \iconv_strlen($lineContent);
-            /** @phpstan-ignore-next-line */
             if (false === \is_int($lineContentLength)) {
                 throw new \RuntimeException('Something went wrong counting the length of the content.');
             }
