@@ -5,9 +5,6 @@
     "license": "MIT",
     "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
     "homepage": "https://github.com/Aerendir/component-text-matrix",
-    "support": {
-        "issues": "https://github.com/Aerendir/component-text-matrix/issues"
-    },
     "authors": [
         {
             "name": "Adamo Aerendir Crespi",
@@ -15,16 +12,18 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-        "ext-iconv":  "*",
-        "symfony/options-resolver": "^3.4|^4.4|^5.1",
+        "php": "^7.3|^8.0",
+        "ext-iconv": "*",
+        "symfony/options-resolver": "^3.4|^4.4|^5.2",
         "thecodingmachine/safe": "^1.0"
     },
     "require-dev": {
         "ext-ast": "*",
         "bamarni/composer-bin-plugin": "^1.4",
+        "rector/rector": "0.9.9",
         "roave/security-advisories": "dev-master",
-        "symfony/var-dumper": "^3.4|^4.4|^5.1"
+        "symfony/var-dumper": "^3.4|^4.4|^5.2",
+        "thecodingmachine/phpstan-safe-rule": "1.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -36,12 +35,16 @@
             "SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\": "tests"
         }
     },
-    "config":{
+    "config": {
         "sort-packages": true
     },
     "scripts": {
         "bin": "echo 'bin not installed'",
-        "post-install-cmd": ["@composer bin all install --ansi"],
-        "post-update-cmd": ["@composer bin all update --ansi"]
+        "post-install-cmd": [
+            "@composer bin all install --ansi"
+        ],
+        "post-update-cmd": [
+            "@composer bin all update --ansi"
+        ]
     }
 }
