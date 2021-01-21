@@ -82,7 +82,7 @@ final class PHPTextMatrix
     /** @var string */
     private const INTEGER = 'integer';
 
-    /* @var string */
+    /** @var string */
     private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
