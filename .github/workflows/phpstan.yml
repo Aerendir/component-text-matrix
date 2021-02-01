@@ -31,7 +31,7 @@ jobs:
 
             - name: Remove Rector
               run: |
-                  composer rem rector/rector --dev
+                  composer rem rector/rector --dev --no-scripts
 
             - name: Install Composer deps
               run: |
