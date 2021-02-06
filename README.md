@@ -12,7 +12,7 @@
     <a href="https://github.com/Aerendir/component-text-matrix/releases"><img src="https://img.shields.io/packagist/php-v/serendipity_hq/component-text-matrix?color=%238892BF&style=flat-square&logo=php" /></a>
     <a title="Tested with Symfony ^3.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^3.4" src="https://img.shields.io/badge/Symfony-%5E3.4-333?style=flat-square&logo=symfony" /></a>
     <a title="Tested with Symfony ^4.4" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^4.4" src="https://img.shields.io/badge/Symfony-%5E4.4-333?style=flat-square&logo=symfony" /></a>
-    <a title="Tested with Symfony ^5.0" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^5.0" src="https://img.shields.io/badge/Symfony-%5E5.0-333?style=flat-square&logo=symfony" /></a>
+    <a title="Tested with Symfony ^5.2" href="https://github.com/Aerendir/component-text-matrix/actions"><img title="Tested with Symfony ^5.2" src="https://img.shields.io/badge/Symfony-%5E5.2-333?style=flat-square&logo=symfony" /></a>
 </p>
 <p align="center">
     <a href="https://www.php.net/manual/en/book.iconv.php"><img src="https://img.shields.io/badge/Requires-ext--iconv-%238892BF?style=flat-square&logo=php"></a>
@@ -44,6 +44,18 @@
 - Customizable vertical, horizontal and cross separators, both for header and for content;
 - Different default style for the header (the first row passed);
 - Ability to remove the first line divider for the header;
+
+<hr />
+<h3 align="center">
+    <b>Do you like this library?</b><br />
+    <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
+</h3>
+<p align="center">
+    or run<br />
+    <code>composer global require symfony/thanks && composer thanks</code><br />
+    to say thank you to all libraries you use in your current project, this included!
+</p>
+<hr />
 
 ## Install Serendipity HQ Text Matrix via Composer
 
@@ -307,3 +319,15 @@ If the padding property has **one** value:
 If one value is passed, you can pass it a simple `integer` (ex.: `['cells_padding' => 1]`) or as an array (ex.: `['cells_padding' => [1]`).
 
 For more information, see the unit tests in the `tests` folder, the methods `resolveOptions()` (where all options are validated) or the examples.
+
+<hr />
+<h3 align="center">
+    <b>Do you like this library?</b><br />
+    <b><a href="#js-repo-pjax-container">LEAVE A &#9733;</a></b>
+</h3>
+<p align="center">
+    or run<br />
+    <code>composer global require symfony/thanks && composer thanks</code><br />
+    to say thank you to all libraries you use in your current project, this included!
+</p>
+<hr />

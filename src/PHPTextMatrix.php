@@ -1,15 +1,12 @@
 <?php
 
 /*
- * This file is part of the PHP Text Matrix Component.
+ * This file is part of the Serendipity HQ Text Matrix Component.
  *
- * Copyright Adamo Aerendir Crespi 2016-2020.
+ * Copyright (c) Adamo Aerendir Crespi <aerendir@serendipityhq.com>.
  *
- * See the LICENSE for more details.
- *
- * @author    Adamo Aerendir Crespi <hello@aerendir.me>
- * @copyright Copyright (C) 2012 - 2020 Aerendir. All rights reserved.
- * @license   MIT License
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace SerendipityHQ\Component\PHPTextMatrix;
@@ -85,7 +82,7 @@ final class PHPTextMatrix
     /** @var string */
     private const INTEGER = 'integer';
 
-    /* @var string */
+    /** @var string */
     private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
@@ -309,6 +306,7 @@ final class PHPTextMatrix
     {
         $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
 
+        // @phpstan-ignore-next-line
         if (\is_array($result)) {
             /** @var mixed $result */
             $result = $result[0];
@@ -464,7 +462,6 @@ final class PHPTextMatrix
 
             // Count characters and draw spaces if needed
             $lineContentLength = \iconv_strlen($lineContent);
-            /** @phpstan-ignore-next-line */
             if (false === \is_int($lineContentLength)) {
                 throw new \RuntimeException('Something went wrong counting the length of the content.');
             }

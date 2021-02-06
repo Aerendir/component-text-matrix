@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <psalm
-        cacheDirectory="./var/cache/psalm"
-        allowPhpStormGenerics="true"
-        checkForThrowsDocblock="true"
-        hideExternalErrors="true"
-        ignoreInternalFunctionNullReturn="false"
-        ignoreInternalFunctionFalseReturn="false"
-    requireVoidReturnType="false"
+    phpVersion="7.3"
+    cacheDirectory="./var/cache/psalm"
+    allowPhpStormGenerics="true"
+    checkForThrowsDocblock="true"
+    hideExternalErrors="true"
+    ignoreInternalFunctionNullReturn="false"
+    ignoreInternalFunctionFalseReturn="false"
     strictBinaryOperands="true"
     totallyTyped="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    xsi:schemaLocation="vendor-bin/phpunit/vendor/vimeo/psalm/config.xsd"
+    errorBaseline=".baseline-psalm.xml"
 >
     <projectFiles>
         <directory name="src"/>
@@ -21,16 +22,7 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <DocblockTypeContradiction errorLevel="suppress" />
         <MissingThrowsDocblock errorLevel="suppress" />
-        <MixedArgument errorLevel="suppress" />
-        <MixedArrayAccess errorLevel="suppress" />
-        <MixedArrayAssignment errorLevel="suppress" />
-        <MixedArrayOffset errorLevel="suppress" />
-        <PossiblyUndefinedMethod errorLevel="suppress" />
-        <UndefinedInterfaceMethod errorLevel="suppress" />
-        <!-- Required as Psalm fails on - -prefer-lowest -->
-        <PossiblyUndefinedArrayOffset errorLevel="suppress" />
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>

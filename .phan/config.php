@@ -5,8 +5,8 @@ declare(strict_types=1);
  * default configuration. Command line arguments will be applied
  * after this file is read.
  */
-$config = [
-    'target_php_version' => '7.2',
+return [
+    'target_php_version' => '7.3',
     'minimum_severity' => \Phan\Issue::SEVERITY_LOW,
 
     // A list of directories that should be parsed for class and
@@ -17,7 +17,10 @@ $config = [
     // Thus, both first-party and third-party code being used by
     // your application should be included in this list.
     'directory_list' => [
-        'src', 'tests', 'vendor'
+        'src',
+        'tests',
+        'vendor',
+        'vendor-bin/phpunit/vendor'
     ],
 
     // A directory list that defines files that will be excluded
@@ -32,11 +35,8 @@ $config = [
     //       should be added to both the `directory_list`
     //       and `exclude_analysis_directory_list` arrays.
     'exclude_analysis_directory_list' => [
-        'vendor/', 'build/', 'docs/'
-    ],
-    'exclude_file_list' => [
-        // This is required as with --prefer-lowest, Phan fails
-        'vendor/psalm/plugin-phpunit/stubs/TestCase.php',
+        'vendor/',
+        'vendor-bin/phpunit/vendor',
     ],
 
     'quick_mode' => false,
@@ -49,7 +49,6 @@ $config = [
     'ignore_undeclared_variables_in_global_scope' => false,
     'suppress_issue_types' => [
         'PhanTypeInvalidThrowsIsInterface',
-        'PhanUnanalyzable',
         'PhanUnreferencedClass',
         'PhanUnreferencedPublicMethod',
         'PhanTypeInvalidDimOffset',
@@ -66,16 +65,8 @@ $config = [
     // can't be removed for whatever reason.
     // (e.g. '@Test\.php$@', or '@vendor/.*/(tests|Tests)/@')
     'exclude_file_regex' => '@^vendor/.*/(tests?|Tests?)/@',
+    'plugins' => [
+        'vendor-bin/phan/vendor/drenso/phan-extensions/Plugin/DocComment/InlineVarPlugin.php',
+        'vendor-bin/phan/vendor/drenso/phan-extensions/Plugin/DocComment/MethodPlugin.php'
+    ]
 ];
-
-
-// This is to make Phan compatible with --prefer-lowest option on GitHub Actions
-if (file_exists('vendor/drenso/phan-extensions/Plugin/DocComment/InlineVarPlugin.php')) {
-    $config['plugins'][] = 'vendor/drenso/phan-extensions/Plugin/DocComment/InlineVarPlugin.php';
-}
-
-if (file_exists('vendor/drenso/phan-extensions/Plugin/DocComment/MethodPlugin.php')) {
-    $config['plugins'][] = 'vendor/drenso/phan-extensions/Plugin/DocComment/MethodPlugin.php';
-}
-
-return $config;

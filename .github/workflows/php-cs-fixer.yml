@@ -16,16 +16,16 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.3.2
+              uses: shivammathur/setup-php@2.9.0
               with:
                   php-version: ${{ matrix.php }}
                   coverage: none # disable xdebug, pcov
-                  tools: prestissimo
-                  extensions: intl
+                  extensions: ast, iconv
 
             - name: Install Composer deps
               run: |
-                  composer update --no-interaction --no-suggest
+                  composer update --no-interaction --no-suggest --no-scripts
+                  composer bin phpcs update
 
             - name: Run PHP CS Fixer
               run: |

@@ -1,15 +1,12 @@
 <?php
 
 /*
- * This file is part of the PHP Text Matrix Component.
+ * This file is part of the Serendipity HQ Text Matrix Component.
  *
- * Copyright Adamo Aerendir Crespi 2016-2020.
+ * Copyright (c) Adamo Aerendir Crespi <aerendir@serendipityhq.com>.
  *
- * See the LICENSE for more details.
- *
- * @author    Adamo Aerendir Crespi <hello@aerendir.me>
- * @copyright Copyright (C) 2012 - 2020 Aerendir. All rights reserved.
- * @license   MIT License
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace SerendipityHQ\Component\PHPTextMatrix\Tests;
@@ -18,9 +15,6 @@ use PHPUnit\Framework\TestCase;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
-/**
- * @author Adamo "Aerendir" Crespi <hello@aerendir.me>
- */
 final class PHPTextMatrixTest extends TestCase
 {
     /** @var array */
@@ -66,8 +60,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render();
 
-        $this::assertEquals($expected, $result);
-        $this::assertEquals(10, $textMatrix->getTableWidth());
+        self::assertEquals($expected, $result);
+        self::assertEquals(10, $textMatrix->getTableWidth());
     }
 
     public function testValidationInterceptsMismatchingColumns(): void
@@ -78,12 +72,12 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render();
 
-        $this::assertEmpty($result);
+        self::assertEmpty($result);
 
         $errors = $textMatrix->getErrors();
 
-        $this::assertCount(1, $errors);
-        $this::assertStringContainsString('The number of columns mismatches', $errors[0]);
+        self::assertCount(1, $errors);
+        self::assertStringContainsString('The number of columns mismatches', $errors[0]);
     }
 
     public function testValidationInterceptsEmptyMatrix(): void
@@ -94,12 +88,12 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render();
 
-        $this::assertEmpty($result);
+        self::assertEmpty($result);
 
         $errors = $textMatrix->getErrors();
 
-        $this::assertCount(1, $errors);
-        $this::assertStringContainsString('There are no rows in the table', $errors[0]);
+        self::assertCount(1, $errors);
+        self::assertStringContainsString('There are no rows in the table', $errors[0]);
     }
 
     public function testHeaderDrawing(): void
@@ -132,8 +126,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(28, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testHeaderDrawingCanRemoveHeaderTopSeparator(): void
@@ -166,8 +160,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(28, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsInteger(): void
@@ -196,8 +190,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(16, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(16, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithOneSetting(): void
@@ -226,8 +220,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(16, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(16, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithTwoSettings(): void
@@ -256,8 +250,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(22, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(22, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithThreeSettings(): void
@@ -292,8 +286,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(22, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(22, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAsArrayWithFourSettings(): void
@@ -328,8 +322,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($this->data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(28, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(28, $textMatrix->getTableWidth());
     }
 
     public function testPaddingAcceptsMaxFourOptions(): void
@@ -389,8 +383,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(19, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(19, $textMatrix->getTableWidth());
     }
 
     public function testCutDefaultsToFalse(): void
@@ -442,8 +436,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(14, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(14, $textMatrix->getTableWidth());
     }
 
     public function testCutToTrue(): void
@@ -499,8 +493,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(13, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(13, $textMatrix->getTableWidth());
     }
 
     public function testAlignRight(): void
@@ -552,8 +546,8 @@ EOF;
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(14, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(14, $textMatrix->getTableWidth());
     }
 
     public function testCustomSeparatorsAndMinWidth(): void
@@ -604,7 +598,7 @@ EOF;
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
 
-        $this::assertSame($expected, $result);
-        $this::assertEquals(77, $textMatrix->getTableWidth());
+        self::assertSame($expected, $result);
+        self::assertEquals(77, $textMatrix->getTableWidth());
     }
 }
