@@ -22,6 +22,17 @@ jobs:
                     coverage: pcov
                     extensions: ast, iconv
 
+            -   name: Get Composer Cache Directory
+                id: composer-cache
+                run: |
+                    echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            -   name: Cache Composer's dependencies
+                uses: actions/cache@v2
+                with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: php-composer-dependencies-cache
+
             -   name: Install Composer deps
                 run: |
                     composer update --no-interaction --no-scripts
