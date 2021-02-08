@@ -1,6 +1,6 @@
 name: PHP CS Fixer
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
     serendipity_hq:
@@ -8,25 +8,25 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest]
-                php: ['7.4']
+                os: [ ubuntu-latest ]
+                php: [ '7.4' ]
         name: PHP ${{ matrix.php }} on ${{ matrix.os }}
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+            -   name: Checkout
+                uses: actions/checkout@v2
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@2.9.0
-              with:
-                  php-version: ${{ matrix.php }}
-                  coverage: none # disable xdebug, pcov
-                  extensions: ast, iconv
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@2.9.0
+                with:
+                    php-version: ${{ matrix.php }}
+                    coverage: none # disable xdebug, pcov
+                    extensions: ast, iconv
 
-            - name: Install Composer deps
-              run: |
-                  composer update --no-interaction --no-suggest --no-scripts
-                  composer bin phpcs update
+            -   name: Install Composer deps
+                run: |
+                    composer update --no-interaction --no-suggest --no-scripts
+                    composer bin phpcs update
 
-            - name: Run PHP CS Fixer
-              run: |
-                  ./vendor/bin/php-cs-fixer fix --allow-risky yes --dry-run -v
+            -   name: Run PHP CS Fixer
+                run: |
+                    ./vendor/bin/php-cs-fixer fix --allow-risky yes --dry-run -v
