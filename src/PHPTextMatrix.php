@@ -465,6 +465,7 @@ final class PHPTextMatrix
             if (false === \is_int($lineContentLength)) {
                 throw new \RuntimeException('Something went wrong counting the length of the content.');
             }
+
             if ($lineContentLength < $this->columnsWidths[$columnName]) {
                 /** @var int $alignSpaces */
                 $alignSpaces = $this->columnsWidths[$columnName] - $lineContentLength;
