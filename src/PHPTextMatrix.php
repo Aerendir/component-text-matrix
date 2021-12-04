@@ -260,6 +260,7 @@ final class PHPTextMatrix
                     // ... simply wrap the content in an array and continue
                     $this->data[$rowPosition][$columnName] = [$cellContent];
                     $this->addVerticalPadding($rowPosition, $columnName);
+
                     continue;
                 }
 
@@ -489,6 +490,7 @@ final class PHPTextMatrix
                         \trim($lineContent)
                         // + right spaces
                         . $this->drawSpaces($alignSpaces);
+
                     break;
 
                 case 'right':
@@ -497,6 +499,7 @@ final class PHPTextMatrix
                         $this->drawSpaces($alignSpaces)
                         // + content
                         . \trim($lineContent);
+
                     break;
             }
 
@@ -658,21 +661,25 @@ final class PHPTextMatrix
             case 1:
                 // Set the same padding for all directions
                 $return = [$padding[0], $padding[0], $padding[0], $padding[0]];
+
                 break;
 
             case 2:
                 // 0: Top and Bottom; 1: Left and Right
                 $return = [$padding[0], $padding[1], $padding[0], $padding[1]];
+
                 break;
 
             case 3:
                 // 0: Top; 1: Left and Right; 2: Bottom
                 $return = [$padding[0], $padding[1], $padding[2], $padding[1]];
+
                 break;
 
             case 4:
                 // 0: Top; 1: Right; 2: Bottom; 3: Left
                 $return = [$padding[0], $padding[1], $padding[2], $padding[3]];
+
                 break;
         }
 
