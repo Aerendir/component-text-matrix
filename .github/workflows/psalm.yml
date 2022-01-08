@@ -16,13 +16,13 @@ jobs:
             -   name: Checkout
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 uses: actions/checkout@v2
 
             -   name: Setup PHP
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 uses: shivammathur/setup-php@2.16.0
                 with:
                     php-version: ${{ matrix.php }}
@@ -32,7 +32,7 @@ jobs:
             -   name: Get Composer Cache Directory
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 id: composer-cache
                 run: |
                     echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -40,7 +40,7 @@ jobs:
             -   name: Cache Composer's dependencies
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 uses: actions/cache@v2.1.7
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
@@ -49,7 +49,7 @@ jobs:
             -   name: Fix Symfony version
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 run: |
                     composer req symfony/flex --no-update
                     composer config extra.symfony.require "${{ matrix.symfony }}"
@@ -57,14 +57,14 @@ jobs:
             -   name: Remove Rector
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 run: |
                     composer rem rector/rector --dev --no-update
 
             -   name: Install Composer deps
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 # Do not install all bin deps, but individually install the required ones
                 # The second update is to make Flex able to do its job
                 run: |
@@ -75,6 +75,6 @@ jobs:
             -   name: Run PSalm
                 # This combination is not installable
                 if: |
-                    (matrix.php != '7.4' && matrix.symfony != '~6.0')
+                    false == (matrix.php != '7.4' && matrix.symfony != '~6.0')
                 run: |
                     ./vendor/bin/psalm
