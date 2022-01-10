@@ -19,7 +19,7 @@ use Rector\Set\ValueObject\SetList;
 return static function (ContainerConfigurator $containerConfigurator) : void {
     $parameters = $containerConfigurator->parameters();
 
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_73);
+    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
 
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
@@ -46,6 +46,8 @@ return static function (ContainerConfigurator $containerConfigurator) : void {
     $containerConfigurator->import(SetList::SAFE_07);
     $containerConfigurator->import(SetList::TYPE_DECLARATION);
 
+    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
+    $parameters->set(Option::IMPORT_DOC_BLOCKS, true);
     $parameters->set(Option::IMPORT_SHORT_CLASSES, false);
 
     $parameters->set(

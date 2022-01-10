@@ -11,6 +11,8 @@
 
 namespace SerendipityHQ\Component\PHPTextMatrix;
 
+use function Safe\preg_replace;
+use function Safe\sprintf;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -202,7 +204,7 @@ final class PHPTextMatrix
             }
 
             if ($numberOfColumns !== $found) {
-                $message = \Safe\sprintf(
+                $message = sprintf(
                     'The number of columns mismatches. First row has %s columns while column %s has %s.',
                     $numberOfColumns,
                     \key($row),
@@ -305,7 +307,7 @@ final class PHPTextMatrix
      */
     private function reduceSpaces(string $cellContent): string
     {
-        $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
+        $result = preg_replace('#\x20+#', ' ', $cellContent);
 
         // @phpstan-ignore-next-line
         if (\is_array($result)) {

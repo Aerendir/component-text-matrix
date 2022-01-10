@@ -12,6 +12,7 @@
 namespace SerendipityHQ\Component\PHPTextMatrix\Tests;
 
 use PHPUnit\Framework\TestCase;
+use function Safe\file_get_contents;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
@@ -593,7 +594,7 @@ EOF;
             ],
         ];
 
-        $expected = \Safe\file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
+        $expected = file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
 
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
