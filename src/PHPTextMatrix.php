@@ -111,9 +111,6 @@ final class PHPTextMatrix
     /** @var int $tableWidth The total width of the table */
     private $tableWidth = 0;
 
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->data = $data;
@@ -121,8 +118,6 @@ final class PHPTextMatrix
 
     /**
      * Renders the table as plain text.
-     *
-     * @param array $options
      *
      * @return bool|string
      */
@@ -219,8 +214,6 @@ final class PHPTextMatrix
 
     /**
      * Returns the errors found by validate().
-     *
-     * @return array
      */
     public function getErrors(): array
     {
@@ -229,8 +222,6 @@ final class PHPTextMatrix
 
     /**
      * Returns the total width of the table.
-     *
-     * @return int
      */
     public function getTableWidth(): int
     {
@@ -302,8 +293,6 @@ final class PHPTextMatrix
 
     /**
      * @see http://stackoverflow.com/a/2326133/1399706
-     *
-     * @param string $cellContent
      */
     private function reduceSpaces(string $cellContent): string
     {
@@ -411,9 +400,6 @@ final class PHPTextMatrix
         return $tableWidth;
     }
 
-    /**
-     * @return string
-     */
     private function drawHeaderDivider(): string
     {
         return $this->drawDivider('sep_head_');
@@ -421,10 +407,6 @@ final class PHPTextMatrix
 
     /**
      * Draws the horizontal divider.
-     *
-     * @param string $prefix
-     *
-     * @return string
      *
      * @psalm-suppress MixedOperand
      */
@@ -443,12 +425,6 @@ final class PHPTextMatrix
     }
 
     /**
-     * @param int    $lineNumber
-     * @param array  $rowContent
-     * @param string $sepPrefix
-     *
-     * @return string
-     *
      * @psalm-suppress MixedOperand
      */
     private function drawLine(int $lineNumber, array $rowContent, string $sepPrefix = self::SEP_): string
@@ -512,12 +488,6 @@ final class PHPTextMatrix
         return $line . $this->options[$sepPrefix . 'v'] . PHP_EOL;
     }
 
-    /**
-     * @param int   $rowPosition
-     * @param array $rowContent
-     *
-     * @return string
-     */
     private function drawRow(int $rowPosition, array $rowContent): string
     {
         $row = '';
@@ -532,10 +502,6 @@ final class PHPTextMatrix
 
     /**
      * Draws a string of empty spaces.
-     *
-     * @param int $amount
-     *
-     * @return string
      */
     private function drawSpaces(int $amount): string
     {
@@ -545,8 +511,6 @@ final class PHPTextMatrix
     /**
      * @param string $char  The character to repeat
      * @param int    $times The number of times the char has to be repeated
-     *
-     * @return string
      */
     private function repeatChar(string $char, int $times): string
     {
@@ -563,8 +527,6 @@ final class PHPTextMatrix
     }
 
     /**
-     * @param array $options
-     *
      * @psalm-suppress MissingClosureParamType
      */
     private function resolveOptions(array $options = []): void
@@ -625,8 +587,6 @@ final class PHPTextMatrix
      * @see http://www.w3schools.com/css/css_padding.asp
      *
      * @throws \InvalidArgumentException If the value is not an integer
-     *
-     * @return array
      */
     private function resolveCellsPaddings(): array
     {
@@ -688,9 +648,6 @@ final class PHPTextMatrix
         return $return;
     }
 
-    /**
-     * @return array
-     */
     private function resolveColumnsOptions(): array
     {
         $return = [];
