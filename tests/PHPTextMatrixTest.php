@@ -18,8 +18,7 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 final class PHPTextMatrixTest extends TestCase
 {
-    /** @var array */
-    private $data;
+    private array $data;
 
     /**
      * {@inheritdoc}
