@@ -88,28 +88,28 @@ final class PHPTextMatrix
     private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
-    private $data = [];
+    private array $data = [];
 
-    /** @var array $errors Contains the errors found by the validate() method */
-    private $errors = [];
+    /** @var string[] $errors Contains the errors found by the validate() method */
+    private array $errors = [];
 
     /**
-     * @var array For each column, contains the length of the longest line in each splitted cell.
+     * @var int[] For each column, contains the length of the longest line in each splitted cell.
      *            The longest line found in the column is the width of the column itself
      */
-    private $columnsWidths = [];
+    private array $columnsWidths = [];
 
     /**
      * @var array For each row, contains the height of the highest cell
      *            The highest cell found in the row is the height of the row itself
      */
-    private $rowsHeights = [];
+    private array $rowsHeights = [];
 
-    /** @var array $options The options to render the table */
-    private $options = [];
+    /** The options to render the table */
+    private array $options = [];
 
     /** @var int $tableWidth The total width of the table */
-    private $tableWidth = 0;
+    private int $tableWidth = 0;
 
     public function __construct(array $data)
     {
