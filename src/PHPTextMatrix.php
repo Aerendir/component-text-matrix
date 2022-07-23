@@ -13,6 +13,7 @@ namespace SerendipityHQ\Component\PHPTextMatrix;
 
 use function Safe\preg_replace;
 use function Safe\sprintf;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
