@@ -12,7 +12,9 @@
 namespace SerendipityHQ\Component\PHPTextMatrix\Tests;
 
 use PHPUnit\Framework\TestCase;
+
 use function Safe\file_get_contents;
+
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
