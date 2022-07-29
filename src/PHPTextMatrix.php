@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Serendipity HQ Text Matrix Component.
  *
@@ -11,10 +13,10 @@
 
 namespace SerendipityHQ\Component\PHPTextMatrix;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 use function Safe\preg_replace;
 use function Safe\sprintf;
-
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * The class renders a table as plain text given an array of values.
@@ -301,7 +303,6 @@ final class PHPTextMatrix
 
         // @phpstan-ignore-next-line
         if (\is_array($result)) {
-            /** @var mixed $result */
             $result = $result[0];
         }
 
@@ -340,9 +341,7 @@ final class PHPTextMatrix
 
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
                 if (\count($cellContent) > $this->rowsHeights[$rowPosition]) {
-                    /*
-                     * The height of this row is the highest found: use this to set the height of the entire row.
-                     */
+                    // The height of this row is the highest found: use this to set the height of the entire row.
                     $this->rowsHeights[$rowPosition] = \count($cellContent);
                 }
 
@@ -586,8 +585,6 @@ final class PHPTextMatrix
      * This method follows the rules of the padding CSS rule.
      *
      * @see http://www.w3schools.com/css/css_padding.asp
-     *
-     * @throws \InvalidArgumentException If the value is not an integer
      */
     private function resolveCellsPaddings(): array
     {

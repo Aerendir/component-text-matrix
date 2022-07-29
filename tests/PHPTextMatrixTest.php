@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Serendipity HQ Text Matrix Component.
  *
@@ -12,19 +14,15 @@
 namespace SerendipityHQ\Component\PHPTextMatrix\Tests;
 
 use PHPUnit\Framework\TestCase;
-
-use function Safe\file_get_contents;
-
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+
+use function Safe\file_get_contents;
 
 final class PHPTextMatrixTest extends TestCase
 {
     private array $data;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->data = [
