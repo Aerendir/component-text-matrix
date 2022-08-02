@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Serendipity HQ Text Matrix Component.
  *
@@ -12,6 +14,9 @@
 namespace SerendipityHQ\Component\PHPTextMatrix;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use function Safe\preg_replace;
+use function Safe\sprintf;
 
 /**
  * The class renders a table as plain text given an array of values.
@@ -86,32 +91,29 @@ final class PHPTextMatrix
     private const STRING = 'string';
 
     /** @var array $data The data to render in the table */
-    private $data = [];
+    private array $data = [];
 
-    /** @var array $errors Contains the errors found by the validate() method */
-    private $errors = [];
+    /** @var string[] $errors Contains the errors found by the validate() method */
+    private array $errors = [];
 
     /**
-     * @var array For each column, contains the length of the longest line in each splitted cell.
+     * @var int[] For each column, contains the length of the longest line in each splitted cell.
      *            The longest line found in the column is the width of the column itself
      */
-    private $columnsWidths = [];
+    private array $columnsWidths = [];
 
     /**
      * @var array For each row, contains the height of the highest cell
      *            The highest cell found in the row is the height of the row itself
      */
-    private $rowsHeights = [];
+    private array $rowsHeights = [];
 
-    /** @var array $options The options to render the table */
-    private $options = [];
+    /** The options to render the table */
+    private array $options = [];
 
     /** @var int $tableWidth The total width of the table */
-    private $tableWidth = 0;
+    private int $tableWidth = 0;
 
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->data = $data;
@@ -119,8 +121,6 @@ final class PHPTextMatrix
 
     /**
      * Renders the table as plain text.
-     *
-     * @param array $options
      *
      * @return bool|string
      */
@@ -202,7 +202,7 @@ final class PHPTextMatrix
             }
 
             if ($numberOfColumns !== $found) {
-                $message = \Safe\sprintf(
+                $message = sprintf(
                     'The number of columns mismatches. First row has %s columns while column %s has %s.',
                     $numberOfColumns,
                     \key($row),
@@ -217,8 +217,6 @@ final class PHPTextMatrix
 
     /**
      * Returns the errors found by validate().
-     *
-     * @return array
      */
     public function getErrors(): array
     {
@@ -227,8 +225,6 @@ final class PHPTextMatrix
 
     /**
      * Returns the total width of the table.
-     *
-     * @return int
      */
     public function getTableWidth(): int
     {
@@ -300,16 +296,13 @@ final class PHPTextMatrix
 
     /**
      * @see http://stackoverflow.com/a/2326133/1399706
-     *
-     * @param string $cellContent
      */
     private function reduceSpaces(string $cellContent): string
     {
-        $result = \Safe\preg_replace('#\x20+#', ' ', $cellContent);
+        $result = preg_replace('#\x20+#', ' ', $cellContent);
 
         // @phpstan-ignore-next-line
         if (\is_array($result)) {
-            /** @var mixed $result */
             $result = $result[0];
         }
 
@@ -348,9 +341,7 @@ final class PHPTextMatrix
 
                 // At this point we have the heigth for sure: on each cycle, we need the highest height
                 if (\count($cellContent) > $this->rowsHeights[$rowPosition]) {
-                    /*
-                     * The height of this row is the highest found: use this to set the height of the entire row.
-                     */
+                    // The height of this row is the highest found: use this to set the height of the entire row.
                     $this->rowsHeights[$rowPosition] = \count($cellContent);
                 }
 
@@ -409,9 +400,6 @@ final class PHPTextMatrix
         return $tableWidth;
     }
 
-    /**
-     * @return string
-     */
     private function drawHeaderDivider(): string
     {
         return $this->drawDivider('sep_head_');
@@ -419,10 +407,6 @@ final class PHPTextMatrix
 
     /**
      * Draws the horizontal divider.
-     *
-     * @param string $prefix
-     *
-     * @return string
      *
      * @psalm-suppress MixedOperand
      */
@@ -441,12 +425,6 @@ final class PHPTextMatrix
     }
 
     /**
-     * @param int    $lineNumber
-     * @param array  $rowContent
-     * @param string $sepPrefix
-     *
-     * @return string
-     *
      * @psalm-suppress MixedOperand
      */
     private function drawLine(int $lineNumber, array $rowContent, string $sepPrefix = self::SEP_): string
@@ -510,12 +488,6 @@ final class PHPTextMatrix
         return $line . $this->options[$sepPrefix . 'v'] . PHP_EOL;
     }
 
-    /**
-     * @param int   $rowPosition
-     * @param array $rowContent
-     *
-     * @return string
-     */
     private function drawRow(int $rowPosition, array $rowContent): string
     {
         $row = '';
@@ -530,10 +502,6 @@ final class PHPTextMatrix
 
     /**
      * Draws a string of empty spaces.
-     *
-     * @param int $amount
-     *
-     * @return string
      */
     private function drawSpaces(int $amount): string
     {
@@ -543,8 +511,6 @@ final class PHPTextMatrix
     /**
      * @param string $char  The character to repeat
      * @param int    $times The number of times the char has to be repeated
-     *
-     * @return string
      */
     private function repeatChar(string $char, int $times): string
     {
@@ -561,8 +527,6 @@ final class PHPTextMatrix
     }
 
     /**
-     * @param array $options
-     *
      * @psalm-suppress MissingClosureParamType
      */
     private function resolveOptions(array $options = []): void
@@ -621,10 +585,6 @@ final class PHPTextMatrix
      * This method follows the rules of the padding CSS rule.
      *
      * @see http://www.w3schools.com/css/css_padding.asp
-     *
-     * @throws \InvalidArgumentException If the value is not an integer
-     *
-     * @return array
      */
     private function resolveCellsPaddings(): array
     {
@@ -686,9 +646,6 @@ final class PHPTextMatrix
         return $return;
     }
 
-    /**
-     * @return array
-     */
     private function resolveColumnsOptions(): array
     {
         $return = [];

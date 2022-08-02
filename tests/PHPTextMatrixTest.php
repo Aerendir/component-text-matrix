@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Serendipity HQ Text Matrix Component.
  *
@@ -15,14 +17,12 @@ use PHPUnit\Framework\TestCase;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
+use function Safe\file_get_contents;
+
 final class PHPTextMatrixTest extends TestCase
 {
-    /** @var array */
-    private $data;
+    private array $data;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->data = [
@@ -593,7 +593,7 @@ EOF;
             ],
         ];
 
-        $expected = \Safe\file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
+        $expected = file_get_contents(__DIR__ . '/sources/test_custom_separator_and_min_width.txt');
 
         $textMatrix = new PHPTextMatrix($data);
         $result     = $textMatrix->render($options);
