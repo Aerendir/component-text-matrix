@@ -534,22 +534,22 @@ final class PHPTextMatrix
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
             // The horizontal header separator
-            self::SEP_HEAD_H => '=',
+            self::SEP_HEAD_H        => '=',
             // The vertical header separator
-            self::SEP_HEAD_V => '#',
+            self::SEP_HEAD_V        => '#',
             // The cross header separator
-            self::SEP_HEAD_X => '#',
+            self::SEP_HEAD_X        => '#',
             // The horizontal separator
-            self::SEP_H => '-',
+            self::SEP_H             => '-',
             // The vertical separator
-            self::SEP_V => '|',
+            self::SEP_V             => '|',
             // The cross separator
-            self::SEP_X      => '+',
-            self::HAS_HEADER => false,
+            self::SEP_X             => '+',
+            self::HAS_HEADER        => false,
             // Determines if the top divider of the header has to be shown or not
             self::SHOW_HEAD_TOP_SEP => true,
             // Determine if the content has to be aligned on the left or on the right
-            'default_cell_align' => self::ALIGN_LEFT,
+            'default_cell_align'    => self::ALIGN_LEFT,
             ])
             // This options can be passed or not
                 ->setDefined(self::CELLS_PADDING)
