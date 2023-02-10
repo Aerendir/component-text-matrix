@@ -47,7 +47,7 @@
 
 ## Features
 
-- Four direction padding (top, right, bottom and left) on a per column basis (following the CSS syntax);
+- Four direction padding (top, right, bottom and left) on a per column basis (following the [CSS syntax](https://www.scaler.com/topics/css/css-syntax/));
 - Max columns width, with possibility to cut words or to maintain their integrity (as the word-wrap CSS property);
 - Left and right alignement on a per column basis;
 - Customizable vertical, horizontal and cross separators, both for header and for content;
