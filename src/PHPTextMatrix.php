@@ -550,7 +550,7 @@ final class PHPTextMatrix
             self::SHOW_HEAD_TOP_SEP => true,
             // Determine if the content has to be aligned on the left or on the right
             'default_cell_align'    => self::ALIGN_LEFT,
-            ])
+        ])
             // This options can be passed or not
                 ->setDefined(self::CELLS_PADDING)
                 ->setDefined(self::COLUMNS);
