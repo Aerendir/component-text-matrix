@@ -22,7 +22,7 @@
         "bamarni/composer-bin-plugin": "^1.4",
         "phpstan/phpstan": "1.12.7",
         "phpstan/phpstan-phpunit": "1.4.0",
-        "rector/rector": "1.2.7",
+        "rector/rector": "1.2.8",
         "roave/security-advisories": "dev-master",
         "serendipity_hq/rector-config": "^1.0",
         "symfony/var-dumper": "^4.4|^5.4|^6.0",
