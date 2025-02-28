@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="v4.25.0@d7cd84c4ebca74ba3419b9601f81d177bcbe2aac"/>
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+  <file src="src/PHPTextMatrix.php">
+    <DeprecatedFunction>
+      <code><![CDATA[sprintf(
+                    'The number of columns mismatches. First row has %s columns while column %s has %s.',
+                    $numberOfColumns,
+                    \key($row),
+                    $found
+                )]]></code>
+    </DeprecatedFunction>
+  </file>
+</files>

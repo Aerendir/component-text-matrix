@@ -584,9 +584,9 @@ EOF;
                 'description' => [
                     PHPTextMatrix::MAX_WIDTH => 40,
                     // Equal to CSS word-break: break-all
-                    PHPTextMatrix::CUT => true,
+                    PHPTextMatrix::CUT       => true,
                 ],
-                'price' => [
+                'price'       => [
                     PHPTextMatrix::ALIGN     => PHPTextMatrix::ALIGN_RIGHT,
                     PHPTextMatrix::MIN_WIDTH => 15,
                 ],
