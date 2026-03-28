@@ -37,7 +37,6 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Aerendir_component-text-matrix&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Aerendir_component-text-matrix)
 
-![Phan](https://github.com/Aerendir/component-text-matrix/workflows/Phan/badge.svg)
 ![PHPStan](https://github.com/Aerendir/component-text-matrix/workflows/PHPStan/badge.svg)
 ![PSalm](https://github.com/Aerendir/component-text-matrix/workflows/PSalm/badge.svg)
 ![PHPUnit](https://github.com/Aerendir/component-text-matrix/workflows/PHPunit/badge.svg)
