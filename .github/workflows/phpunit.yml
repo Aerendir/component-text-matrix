@@ -12,7 +12,7 @@ jobs:
     phpunit:
         runs-on: ${{ matrix.os }}
         env:
-            IS_MAIN_ENV: ${{ github.ref == 'refs/heads/master' && matrix.php == '8.2' && matrix.dependency-versions == 'highest' }}
+            IS_MAIN_ENV: ${{ github.ref == 'refs/heads/master' && matrix.php == '8.2' && matrix.symfony == '~6.4' && matrix.dependency-versions == 'highest' }}
         strategy:
             fail-fast: false
             matrix:
@@ -90,7 +90,7 @@ jobs:
 
             -   name: Sonarcloud
                 if: ${{ !cancelled() && env.IS_MAIN_ENV == 'true' }}
-                uses: sonarsource/sonarcloud-github-action@master
+                uses: sonarsource/sonarqube-scan-action@v5
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
