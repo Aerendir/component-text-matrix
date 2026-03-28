@@ -17,8 +17,6 @@ use PHPUnit\Framework\TestCase;
 use SerendipityHQ\Component\PHPTextMatrix\PHPTextMatrix;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
-use function Safe\file_get_contents;
-
 final class PHPTextMatrixTest extends TestCase
 {
     private array $data;

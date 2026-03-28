@@ -1,32 +1,40 @@
 {
     "name": "serendipity_hq/component-text-matrix",
     "description": "A PHP library to render an array representing a matrix as a plain text table.",
-    "type": "library",
     "license": "MIT",
-    "keywords": ["php", "array", "matrix", "txt", "text", "plain txt", "plain text", "table", "text table", "txt table"],
-    "homepage": "https://github.com/Aerendir/component-text-matrix",
+    "type": "library",
+    "keywords": [
+        "php",
+        "array",
+        "matrix",
+        "txt",
+        "text",
+        "plain txt",
+        "plain text",
+        "table",
+        "text table",
+        "txt table"
+    ],
     "authors": [
         {
             "name": "Adamo Aerendir Crespi",
             "email": "aerendir@serendipityhq.com"
         }
     ],
+    "homepage": "https://github.com/Aerendir/component-text-matrix",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.2",
         "ext-iconv": "*",
-        "symfony/options-resolver": "^4.4|^5.4|^6.0|^7.0",
-        "thecodingmachine/safe": "^1.0|^2.0|^3.0"
+        "symfony/options-resolver": "^6.4 || ^7.4 || ^8.0"
     },
     "require-dev": {
         "ext-ast": "*",
         "bamarni/composer-bin-plugin": "^1.4",
-        "phpstan/phpstan": "1.12.8",
-        "phpstan/phpstan-phpunit": "1.4.0",
-        "rector/rector": "1.2.10",
+        "phpstan/phpstan": "2.1.40",
+        "phpstan/phpstan-phpunit": "2.0.16",
+        "rector/rector": "2.3.8",
         "roave/security-advisories": "dev-master",
-        "serendipity_hq/rector-config": "^1.0",
-        "symfony/var-dumper": "^4.4|^5.4|^6.0",
-        "thecodingmachine/phpstan-safe-rule": "1.2.0"
+        "serendipity_hq/rector-config": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -39,23 +47,131 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true
-        }
-    },
-    "scripts": {
-        "bin": "echo 'bin not installed'",
-        "post-install-cmd": [
-            "@composer bin all install --ansi"
-        ],
-        "post-update-cmd": [
-            "@composer bin all update --ansi"
-        ]
+        },
+        "sort-packages": true
     },
     "extra": {
         "bamarni-bin": {
             "bin-links": false
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer bin all install --ansi"
+        ],
+        "post-update-cmd": [
+            "@composer bin all update --ansi"
+        ],
+        "bin": "echo 'bin not installed'",
+        "bl": [
+            "@bl:phpstan",
+            "@bl:psalm"
+        ],
+        "bl:phpstan": [
+            "vendor/bin/phpstan analyse --generate-baseline .baseline-phpstan.neon"
+        ],
+        "bl:psalm": [
+            "vendor-bin/phpunit/vendor/bin/psalm --set-baseline=.baseline-psalm.xml"
+        ],
+        "dev:insights": [
+            "./vendor-bin/phpinsights/vendor/bin/phpinsights analyse --composer=./composer.json -v"
+        ],
+        "fix": [
+            "@fix:rector",
+            "@fix:phpcs",
+            "@fix:cn"
+        ],
+        "fix:cn": [
+            "composer bin cn normalize ./../../composer.json --no-scripts --no-update-lock"
+        ],
+        "fix:phpcs": [
+            "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --allow-risky yes -v"
+        ],
+        "fix:rector": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/rector process"
+        ],
+        "matrix:compare": [
+            "vendor-bin/ghmatrix/vendor/bin/github-actions-matrix compare"
+        ],
+        "matrix:sync": [
+            "vendor-bin/ghmatrix/vendor/bin/github-actions-matrix sync"
+        ],
+        "test": [
+            "@test:run"
+        ],
+        "test:coverage": [
+            "@test:run:coverage"
+        ],
+        "test:infection:covered": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --logger-html=./var/mutations --only-covered --only-covering-test-cases"
+        ],
+        "test:infection:fast": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --git-diff-filter=AM --logger-html=./var/mutations --only-covered --only-covering-test-cases"
+        ],
+        "test:infection:full": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --logger-html=./var/mutations"
+        ],
+        "test:infection:run:covered": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --skip-initial-tests --coverage=./var/coverage/ --logger-html=./var/mutations --only-covered --only-covering-test-cases"
+        ],
+        "test:infection:run:fast": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --skip-initial-tests --coverage=./var/coverage/ --git-diff-filter=AM --logger-html=./var/mutations --only-covered --only-covering-test-cases"
+        ],
+        "test:infection:run:full": [
+            "@putenv SYMFONY_DEPRECATIONS_HELPER=weak",
+            "vendor-bin/infection/vendor/bin/infection --skip-initial-tests --coverage=./var/coverage/ --logger-html=./var/mutations"
+        ],
+        "test:run": [
+            "@php vendor-bin/phpunit/vendor/bin/phpunit"
+        ],
+        "test:run:coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "@test:run --coverage-html ./var/coverage/coverage-html --coverage-clover ./var/coverage/clover.xml --coverage-xml ./var/coverage/coverage-xml --log-junit ./var/coverage/junit.xml"
+        ],
+        "test:run:coverage:filter": [
+            "@test:run:coverage --filter"
+        ],
+        "val": [
+            "@val:style",
+            "@val:static"
+        ],
+        "val:cn": [
+            "composer bin cn normalize ./../../composer.json --dry-run"
+        ],
+        "val:composer": [
+            "@val:cn",
+            "composer audit",
+            "composer validate --strict --check-lock"
+        ],
+        "val:phpcs": [
+            "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --allow-risky yes -v --dry-run"
+        ],
+        "val:phpstan": [
+            "vendor/bin/phpstan analyse"
+        ],
+        "val:psalm": [
+            "vendor-bin/phpunit/vendor/bin/psalm"
+        ],
+        "val:rector": [
+            "vendor/bin/rector process --dry-run"
+        ],
+        "val:static": [
+            "@val:composer",
+            "@val:phpstan",
+            "@val:psalm"
+        ],
+        "val:style": [
+            "@val:rector",
+            "@val:phpcs",
+            "@val:cn"
+        ]
     }
 }

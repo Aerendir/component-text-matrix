@@ -15,9 +15,6 @@ namespace SerendipityHQ\Component\PHPTextMatrix;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use function Safe\preg_replace;
-use function Safe\sprintf;
-
 /**
  * The class renders a table as plain text given an array of values.
  *
@@ -121,10 +118,8 @@ final class PHPTextMatrix
 
     /**
      * Renders the table as plain text.
-     *
-     * @return bool|string
      */
-    public function render(array $options = [])
+    public function render(array $options = []): false|string
     {
         // Set the options to use
         $this->resolveOptions($options);
