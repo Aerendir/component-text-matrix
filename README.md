@@ -44,6 +44,11 @@
 ![PHP CS Fixer](https://github.com/Aerendir/component-text-matrix/workflows/PHP%20CS%20Fixer/badge.svg)
 ![Rector](https://github.com/Aerendir/component-text-matrix/workflows/Rector/badge.svg)
 
+[![codecov](https://codecov.io/gh/Aerendir/component-text-matrix/branch/master/graph/badge.svg?token=W9FH392F73)](https://codecov.io/gh/Aerendir/component-text-matrix)
+
+[![CodeCov SunBurst](https://codecov.io/gh/Aerendir/component-text-matrix/branch/master/graphs/sunburst.svg)](https://codecov.io/gh/Aerendir/component-text-matrix)
+[![CodeCov Tree](https://codecov.io/gh/Aerendir/component-text-matrix/branch/master/graphs/tree.svg)](https://codecov.io/gh/Aerendir/component-text-matrix)
+[![CodeCov I Cicle](https://codecov.io/gh/Aerendir/component-text-matrix/branch/master/graphs/icicle.svg)](https://codecov.io/gh/Aerendir/component-text-matrix)
 ## Features
 
 - Four direction padding (top, right, bottom and left) on a per column basis (following the CSS syntax);
