@@ -15,14 +15,14 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ ubuntu-latest ]
-                php: [ '7.4', '8.0', '8.1' ]
+                php: [ '8.2', '8.3', '8.4', '8.5' ]
 
         steps:
             -   name: Checkout
-                uses: actions/checkout@v4
+                uses: actions/checkout@v6
 
             -   name: Setup PHP
-                uses: shivammathur/setup-php@2.32.0
+                uses: shivammathur/setup-php@2.36.0
                 with:
                     php-version: ${{ matrix.php }}
                     coverage: none # disable xdebug, pcov
@@ -34,7 +34,12 @@ jobs:
                 with:
                     composer-options: --no-scripts
 
+            -   name: Install Composer Normalize
+                uses: ramsey/composer-install@v3
+                with:
+                    working-directory: './vendor-bin/cn'
+
             -   name: Run Composer
                 run: |
                     symfony security:check
-                    composer validate --strict --no-check-lock
+                    composer val:composer

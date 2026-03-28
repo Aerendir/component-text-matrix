@@ -1,92 +1,248 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:drawLine\\(\\) has parameter \\$rowContent with no value type specified in iterable type array\\.$#"
+			message: '#^Binary operation "\+" between \(float\|int\) and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:drawRow\\(\\) has parameter \\$rowContent with no value type specified in iterable type array\\.$#"
+			message: '#^Binary operation "\+" between int and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:getErrors\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Binary operation "\+" between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:render\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/PHPTextMatrix.php
-
-		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveCellsPaddings\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/PHPTextMatrix.php
-
-		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveColumnsOptions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/PHPTextMatrix.php
-
-		-
-			message: "#^Method SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:resolveOptions\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/PHPTextMatrix.php
-
-		-
-			message: "#^PHPDoc tag @var for variable \\$cellContent has no value type specified in iterable type array\\.$#"
+			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 2
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$columnOptions has no value type specified in iterable type array\\.$#"
+			message: '#^Binary operation "\." between string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$padding has no value type specified in iterable type array\\.$#"
+			message: '#^Cannot access offset ''align'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset ''cut'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$row has no value type specified in iterable type array\\.$#"
+			message: '#^Cannot access offset ''max_width'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$rowContent has no value type specified in iterable type array\\.$#"
+			message: '#^Cannot access offset ''min_width'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset 1 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 3
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$columnsWidths \\(array\\<int\\>\\) does not accept array\\<bool\\|int\\>\\.$#"
+			message: '#^Cannot access offset 2 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset 3 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 8
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:__construct\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:drawLine\(\) has parameter \$rowContent with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:drawRow\(\) has parameter \$rowContent with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:getErrors\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:render\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:resolveCellsPaddings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:resolveColumnsOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:resolveOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$cellContent has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 2
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
+			message: '#^PHPDoc tag @var for variable \$columnOptions has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$options type has no value type specified in iterable type array\\.$#"
+			message: '#^PHPDoc tag @var for variable \$padding has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\PHPTextMatrix\\:\\:\\$rowsHeights type has no value type specified in iterable type array\\.$#"
+			message: '#^PHPDoc tag @var for variable \$row has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: src/PHPTextMatrix.php
 
 		-
-			message: "#^Property SerendipityHQ\\\\Component\\\\PHPTextMatrix\\\\Tests\\\\PHPTextMatrixTest\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
+			message: '#^PHPDoc tag @var for variable \$rowContent has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 3
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Parameter \#1 \$amount of method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:drawSpaces\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_unshift expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Parameter \#1 \$char of method SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:repeatChar\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$columnsWidths \(array\<int\>\) does not accept array\<bool\|int\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$columnsWidths \(array\<int\>\) does not accept array\<int\|false\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$columnsWidths \(array\<int\>\) does not accept array\<mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\PHPTextMatrix\:\:\$rowsHeights type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/PHPTextMatrix.php
+
+		-
+			message: '#^Cannot access offset ''b'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/PHPTextMatrixTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/PHPTextMatrixTest.php
+
+		-
+			message: '#^Property SerendipityHQ\\Component\\PHPTextMatrix\\Tests\\PHPTextMatrixTest\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/PHPTextMatrixTest.php
 
