@@ -2,4 +2,6 @@
 
 /composer.json -export-ignore
 /src/ -export-ignore
+/src/** -export-ignore
 /LICENSE -export-ignore
+/README.md -export-ignore
