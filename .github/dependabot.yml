@@ -2,7 +2,6 @@ version: 2
 updates:
     - package-ecosystem: "composer"
       versioning-strategy: widen
-      target-branch: "dev"
       directory: "/"
       schedule:
           interval: "daily"
@@ -22,7 +21,6 @@ updates:
           - "[Status] Automerge"
       open-pull-requests-limit: 1000
     - package-ecosystem: "github-actions"
-      target-branch: "dev"
       directory: "/"
       schedule:
           interval: "daily"
@@ -44,7 +42,6 @@ updates:
     # PHP CS Fixer through Bamarni
     - package-ecosystem: "composer"
       versioning-strategy: increase
-      target-branch: "dev"
       directory: "/vendor-bin/phpcs/"
       schedule:
           interval: "daily"
@@ -66,7 +63,6 @@ updates:
     # PHPUnit through Bamarni
     - package-ecosystem: "composer"
       versioning-strategy: increase
-      target-branch: "dev"
       directory: "/vendor-bin/phpunit/"
       schedule:
           interval: "daily"
@@ -88,7 +84,6 @@ updates:
     # Phan through Bamarni
     - package-ecosystem: "composer"
       versioning-strategy: increase
-      target-branch: "dev"
       directory: "/vendor-bin/phan/"
       schedule:
           interval: "daily"
