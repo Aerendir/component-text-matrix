@@ -30,12 +30,12 @@ jobs:
                     extensions: ast, iconv
 
             -   name: Install Composer deps
-                uses: ramsey/composer-install@v3
+                uses: ramsey/composer-install@v4
                 with:
                     composer-options: --no-scripts
 
             -   name: Install Composer Normalize
-                uses: ramsey/composer-install@v3
+                uses: ramsey/composer-install@v4
                 with:
                     working-directory: './vendor-bin/cn'
 
