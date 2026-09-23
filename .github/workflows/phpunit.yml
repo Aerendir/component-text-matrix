@@ -98,7 +98,7 @@ jobs:
 
             - name: Upload test results to Codecov
               if: ${{ !cancelled() && env.IS_MAIN_ENV == 'true' }}
-              uses: codecov/codecov-action@v5
+              uses: codecov/codecov-action@v7
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   flags: ${{matrix.symfony}},${{matrix.php}},${{matrix.dependency-versions}}
@@ -107,7 +107,7 @@ jobs:
 
             -   name: Upload coverage reports to Codecov
                 if: ${{ !cancelled() && env.IS_MAIN_ENV == 'true' }}
-                uses: codecov/codecov-action@v5
+                uses: codecov/codecov-action@v7
                 with:
                     token: ${{ secrets.CODECOV_TOKEN }}
                     fail_ci_if_error: false
