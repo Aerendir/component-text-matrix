@@ -16,19 +16,15 @@ use SerendipityHQ\Integration\Rector\SerendipityHQ;
 
 $allowedRunPaths = [
     // From inside Docker
-    '/project',
-    '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+    '/project/vendor/bin',
 
     // ON GitHub Actions
     '/home/runner/.composer/vendor/bin',
 ];
 
-$canRun = false;
-foreach ($allowedRunPaths as $allowedRunPath) {
-    if (str_starts_with($_SERVER['PATH'] ?? '', $allowedRunPath)) {
-        $canRun = true;
-    }
-}
+$serverPaths  = explode(':', $_SERVER['PATH'] ?? '');
+$intersection = array_intersect($allowedRunPaths, $serverPaths);
+$canRun       = count($intersection) > 0;
 
 if (false === $canRun) {
     $message = <<<EOF
