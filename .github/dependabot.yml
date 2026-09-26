@@ -65,13 +65,15 @@ updates:
       versioning-strategy: increase
       directory: "/vendor-bin/phpunit/"
       ignore:
-          # PHPUnit 13 requires PHP >= 8.4.1, and this matrix still runs 8.2: it simply cannot be
-          # installed on the lowest columns. Widening the requirement into a union of lines is not
-          # the answer either — the tests are written against one major only, and PHPUnit 12 already
-          # stopped reading metadata from doc-comments. Remove this entry when the matrix floor
-          # reaches PHP 8.4.1, in the same change that raises it and migrates the tests.
+          # PHPUnit 12 requires PHP >= 8.3 and PHPUnit 13 requires PHP >= 8.4.1, while this matrix
+          # still runs 8.2: neither can be installed on the lowest columns. The highest line that
+          # covers the whole matrix is 11.5, whose own floor is 8.2. Widening the requirement into
+          # a union of lines is not the answer either — the tests are written against one major
+          # only, and PHPUnit 12 already stopped reading metadata from doc-comments. Remove this
+          # entry when the matrix floor reaches 8.3, in the same change that raises it and migrates
+          # the tests to attributes.
           - dependency-name: "phpunit/phpunit"
-            versions: [">=13"]
+            versions: [">=12"]
       schedule:
           interval: "daily"
       allow:
